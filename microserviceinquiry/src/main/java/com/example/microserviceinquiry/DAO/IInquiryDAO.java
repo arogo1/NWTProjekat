@@ -1,7 +1,13 @@
-// package com.example.microserviceinquiry.DAO;
+package com.example.microserviceinquiry.DAO;
 
-// import com.example.microserviceinquiry.ModelDTO.InquiryDTO;
+import java.util.List;
 
-// public interface IInquiryDAO {
-//     boolean save(InquiryDTO inquiryDTO) throws Exception;
-// }
+import com.example.microserviceinquiry.ModelDTO.InquiryDTO;
+
+public interface IInquiryDAO {
+    boolean save(InquiryDTO inquiryDTO) throws Exception;
+
+    List<InquiryDTO> getInquiryByName(String InquiryId) throws Exception;
+
+    List<InquiryDAO> getInquiryByCategory(int categoryId) throws Exception;
+}

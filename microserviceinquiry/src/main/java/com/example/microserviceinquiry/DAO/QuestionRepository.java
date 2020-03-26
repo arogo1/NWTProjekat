@@ -1,9 +1,9 @@
-// package com.example.microserviceinquiry.DAO;
+package com.example.microserviceinquiry.DAO;
 
-// import com.example.microserviceinquiry.ModelDTO.QuestionDTO;
+import com.example.microserviceinquiry.ModelDTO.QuestionDTO;
 
-// import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.CrudRepository;
 
-// public interface QuestionRepository extends CrudRepository<QuestionDTO, Integer> {
+public interface QuestionRepository extends CrudRepository<QuestionDTO, Integer> {
     
-// }
+}
