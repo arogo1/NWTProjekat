@@ -1,7 +1,13 @@
-// package com.example.microserviceinquiry.Service;
+package com.example.microserviceinquiry.Service;
 
-// import com.example.microserviceinquiry.ModelDTO.InquiryDTO;
+import com.example.microserviceinquiry.Models.*;
 
-// public interface IInquiryService {
-//     boolean save(InquiryDTO inquiryDTO) throws Exception;
-// }
+public interface IInquiryService {
+    boolean save(Inquiry inquiry) throws Exception;
+
+    boolean saveQuestionGroup(QuestionGroup questionGroup) throws Exception;
+
+    boolean saveQuestion(Question question) throws Exception;
+
+    boolean saveAnswer(Answer answer) throws Exception;
+}

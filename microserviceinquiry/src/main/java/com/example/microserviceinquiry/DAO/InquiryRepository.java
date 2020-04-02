@@ -1,11 +1,9 @@
 package com.example.microserviceinquiry.DAO;
 
-import java.util.List;
-
-import com.example.microserviceinquiry.ModelDTO.InquiryDTO;
+import com.example.microserviceinquiry.Models.Inquiry;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface InquiryRepository extends CrudRepository<InquiryDTO, Integer> {
-    List<InquiryDTO> getInquiryByName(String InquiryName);
+public interface InquiryRepository extends CrudRepository<Inquiry, Integer> {
+    //List<Inquiry> getInquiryByName(String InquiryName);
 }

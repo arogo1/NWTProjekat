@@ -2,23 +2,24 @@ package com.example.microserviceinquiry.DAO;
 
 import java.util.List;
 
-import com.example.microserviceinquiry.ModelDTO.InquiryDTO;
+import com.example.microserviceinquiry.Models.Inquiry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class InquiryDAO implements IInquiryDAO {
 
     @Autowired
     InquiryRepository inquiryRepository;
 
     @Override
-    public boolean save(InquiryDTO inquiryDTO) throws Exception {
-        inquiryRepository.save(inquiryDTO);
+    public boolean save(Inquiry inquiry) throws Exception {
+        inquiryRepository.save(inquiry);
         return true;
     }
 
     @Override
-    public List<InquiryDTO> getInquiryByName(String InquiryName) {
+    public List<Inquiry> getInquiryByName(String InquiryName) {
         //inquiryRepository.getInquiryByName(InquiryName;)
         return null;
     }
