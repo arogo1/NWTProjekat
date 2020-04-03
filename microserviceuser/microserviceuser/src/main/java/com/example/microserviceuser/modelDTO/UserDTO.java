@@ -9,29 +9,29 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @Entity
 public class UserDTO {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 
 	@NotNull
-	@Size(min=3, message="Username must be at least 3 characters long")
+	@Size(min = 3, message = "Username must be at least 3 characters long")
 	private String username;
 
 	@NotNull
-	@Size(min=8, message="Password must be at least 8 characters long")
+	@Size(min = 8, message = "Password must be at least 8 characters long")
 	private String password;
 
-    public UserDTO() {}
-	 
-    public UserDTO(String username, String password) {
-    	this.username = username;
-    	this.password = password;
-    }
-	
+	public UserDTO() {
+	}
+
+	public UserDTO(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -55,8 +55,5 @@ public class UserDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	 
-	 
-
 
 }

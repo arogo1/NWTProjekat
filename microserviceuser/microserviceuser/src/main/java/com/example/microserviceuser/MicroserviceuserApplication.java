@@ -9,18 +9,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.microserviceuser.modelDTO.UserDTO;
 import com.example.microserviceuser.repository.UserRepository;
+import com.example.microserviceuser.service.IUserService;
+import com.example.microserviceuser.service.UserService; 
 
 @SpringBootApplication
 @RestController
 @ConfigurationPropertiesScan
+
 public class MicroserviceuserApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MicroserviceuserApplication.class, args);
 	}
 	
+	    
+	    
 	    @Autowired
-	    UserRepository userRepository;
+	    IUserService userService;
 
 	   @RequestMapping(value = "/saveUser")
 	    public String saveUser(UserDTO user) {
@@ -29,7 +34,8 @@ public class MicroserviceuserApplication {
 	        user.setPassword("test123456");
 	        System.out.println(user.getUsername());
 	        try {
-	            userRepository.save(user);
+	            //userRepository.save(user);
+	        	userService.saveUser(user);
 	            System.out.println("repository");
 	        } catch (Exception e) {
 	        	System.out.println("error");

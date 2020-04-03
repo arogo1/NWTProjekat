@@ -12,43 +12,71 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.microserviceuser.controller.exception.UserNotFoundException;
 import com.example.microserviceuser.modelDTO.UserDTO;
 import com.example.microserviceuser.repository.UserRepository;
+import com.example.microserviceuser.service.IUserService;
+import com.example.microserviceuser.service.UserService;
 
 @RestController
 public class UserController {
 	
 	@Autowired
-    UserRepository userRepository;
-	
+	private IUserService userService;
 	
 	@GetMapping("/users")
-    public Iterable<UserDTO>getUsers(){
-        return userRepository.findAll();
+	public Iterable<UserDTO>getUsers(){
+        try {
+        	System.out.println("try");
+			return userService.findAllUsers();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("catch");
+			e.printStackTrace();
+			return null;
+		}
     }
     @GetMapping("/user/{id}")
     public Optional<UserDTO> findById(@PathVariable("id") Integer id){
-        return userRepository.findById(id);
+			try {
+				return Optional.ofNullable(userService.findUserById(id).orElseThrow(() -> new UserNotFoundException(id)));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
     }
+    
     @PostMapping("/user")
     public UserDTO newUser(UserDTO newUser) {
-        return userRepository.save(newUser);
+        try {
+			return userService.saveUser(newUser);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
     }
 
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable Integer id) {
-        userRepository.deleteById(id);
+        try {
+			userService.deleteUserById(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
+    
     @PutMapping("/user/{id}")
-    public UserDTO updateUser(@RequestBody UserDTO newData, @PathVariable("id") Integer id) {
-        return userRepository.findById(id)
-                .map(user -> {
-                    user.setUserId(newData.getUserId()); 
-                    user.setUsername(newData.getUsername());
-                    user.setPassword(newData.getPassword());
-                    System.out.println(user.toString());
-                    return userRepository.save(user);
-                }).orElseGet(() -> userRepository.save(newData));
+    public UserDTO updateUser(@RequestBody UserDTO newUser, @PathVariable("id") Integer id) {
+       try {
+		return userService.updateUser(newUser, id);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return null;
+	}
     }
 
 }
