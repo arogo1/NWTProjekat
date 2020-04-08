@@ -17,21 +17,21 @@ public class Answer {
 
     @Id
     @GeneratedValue
-    @Column(name="AnswerId")
+    @Column(name="answer_id")
     private int answerId;
 
     //@NotEmpty
     @Size(min=3)
-    @Column(name="Answer")
+    @Column(name="answer")
     private String answer;
 
     //@NotNull
-    @Column(name="IsCorrect")
+    @Column(name="is_correct")
     private boolean isCorrect;
 
     //@NotNull
     @ManyToOne
-    @JoinColumn(name="QuestionId")
+    @JoinColumn(name="question_id")
     private Question question;
 
     public Answer(){}
@@ -64,4 +64,9 @@ public class Answer {
     public void SetIsCorrect(Boolean isCorrect){
         this.isCorrect = isCorrect;
     }
+
+    @Override
+	public String toString() {
+		return answer + " " + answerId + " " + isCorrect;
+	}
 }

@@ -80,4 +80,9 @@ public class QuestionGroup {
     public void SetNumberOfQuestion(int NumberOfQuestion){
         this.numberOfQuestion = NumberOfQuestion;
     }
+
+    @Override
+	public String toString() {
+		return questionGroupName + " " + questionGroupId;
+	}
 }

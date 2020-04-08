@@ -1,5 +1,8 @@
 package com.example.microserviceinquiry.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.microserviceinquiry.DAO.IAnswerDAO;
 import com.example.microserviceinquiry.DAO.IInquiryDAO;
 import com.example.microserviceinquiry.DAO.IQuestionDAO;
@@ -46,6 +49,13 @@ public class InquiryService implements IInquiryService {
     public boolean saveAnswer(Answer answer) throws Exception {
         answerDAO.save(answer);
         return false;
+    }
+
+    @Override
+    public List<Answer> getAnswer(int questionId) throws Exception {
+        List<Answer> answers = new ArrayList<Answer>();
+        answers = answerDAO.findAnswer(questionId);
+        return answers;
     }
 
 }

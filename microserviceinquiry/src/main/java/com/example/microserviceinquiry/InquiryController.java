@@ -3,77 +3,84 @@ package com.example.microserviceinquiry;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.microserviceinquiry.DAO.InquiryRepository;
-import com.example.microserviceinquiry.Models.Inquiry;
-import com.example.microserviceinquiry.Models.QuestionGroup;
+import com.example.microserviceinquiry.Exception.SaveException;
+import com.example.microserviceinquiry.Exception.RequestException;
+import com.example.microserviceinquiry.Models.*;
 import com.example.microserviceinquiry.Service.IInquiryService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class InquiryController {
 
     @Autowired
     private IInquiryService inquiryService;
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @GetMapping("/")
-    public @ResponseBody String nesto(){
+    public @ResponseBody String nesto() {
         return "Usao sam";
     }
 
-    @RequestMapping(value="/saveInquiry")
-    public String saveInquiry(Inquiry inquiry) {
-        //return "Usooooooooooooooooooo";
+    @PostMapping("/saveInquiry")
+    public String saveInquiry(@RequestBody Inquiry inquiry) {
         QuestionGroup questionGroup = new QuestionGroup();
-        logger.trace("Usao");
+        Question question = new Question();
+        Answer answer = new Answer();
         inquiry.setCategoryId(1);
         inquiry.setInquiryName("Proba");
         inquiry.setUserId(2);
         inquiry.setNumberOfQuestionGroup(2);
-        
+
         try {
             inquiryService.save(inquiry);
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Paoo";
+            throw new SaveException("Nije moguće spasiti inquiry");
         }
+
+        questionGroup.SetQuestionGroupName("Grupa");
+        questionGroup.SetNumberOfQuestion(4);
+        questionGroup.SetInquiry(inquiry);
+        try {
+            inquiryService.saveQuestionGroup(questionGroup);
+        } catch (Exception e) {
+            throw new SaveException("Nije moguće spasiti question group");
+        }
+
+        question.SetQuestion("Pitanje");
+        question.SetQuestionGroupId(questionGroup);
+
+        try {
+            inquiryService.saveQuestion(question);
+        } catch (Exception e) {
+            throw new SaveException("Nije moguće spasiti question");
+        }
+
+        answer.SetAnswer("Odgovor");
+        answer.SetIsCorrect(true);
+        answer.SetQuestion(question);
+        try {
+            inquiryService.saveAnswer(answer);
+        } catch (Exception e) {
+            throw new SaveException("Nije moguće spasiti answer");
+        }
+
         return "Prosoo";
     }
 
-    // @Autowired
-    // InquiryRepository inquiryRepository;
-
-    // @RequestMapping(value="/saveInquiry")
-	// public String saveInquiry(Inquiry inquiryDTO, QuestionGroup questionGroupDTO) {
-	// System.out.println("Usao");
-	// List<QuestionGroup> questionGroupsDTO = new ArrayList<>();
-	// inquiryDTO.setCategoryId(1);
-	// inquiryDTO.setInquiryName("Proba");
-	// inquiryDTO.setUserId(2);
-	// inquiryDTO.setNumberOfQuestionGroup(5);
-	
-	// // questionGroupDTO.SetInquiryId(1);
-	// questionGroupDTO.SetQuestionGroupName("Proba");
-	// questionGroupDTO.SetNumberOfQuestion(2);
-	// questionGroupsDTO.add(questionGroupDTO);
-	// inquiryDTO.SetQuestionGroups(questionGroupsDTO);
-	// System.out.println(inquiryDTO.GetInquiryName());
-	// try {
-	// 	inquiryRepository.save(inquiryDTO);
-	// } catch (Exception e) {
-	// 	e.printStackTrace();
-	// 	return "error " + e;
-	// }
-	// return "Spaseno";
-	// }
+    @GetMapping("/getAnswer")
+    public List<Answer> getAnswer(@PathVariable int questionId) {
+        List<Answer> answers = new ArrayList<Answer>();
+        try {
+            answers = inquiryService.getAnswer(10);
+        } catch (Exception e) {
+            throw new RequestException("Nije moguće dohvatit traženi inquiry");
+        }
+        return answers;
+    }
 }

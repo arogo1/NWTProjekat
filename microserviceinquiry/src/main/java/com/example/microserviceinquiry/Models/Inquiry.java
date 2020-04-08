@@ -90,4 +90,9 @@ public class Inquiry{
     public void setNumberOfQuestionGroup(int NumberOfQuestionGroup){
         this.numberOfQuestionGroup = NumberOfQuestionGroup;
     }
+
+    @Override
+	public String toString() {
+		return inquiryName + " " + numberOfQuestionGroup + " " + categoryId + " " + inquiryId;
+	}
 }

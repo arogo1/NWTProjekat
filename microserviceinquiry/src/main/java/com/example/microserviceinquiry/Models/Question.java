@@ -67,4 +67,9 @@ public class Question {
     public QuestionGroup GetQuestionGroup(){
         return questionGroup;
     }
+
+    @Override
+	public String toString() {
+		return question + " " + questionId;
+	}
 }
