@@ -75,6 +75,14 @@ public class Inquiry{
         return numberOfQuestionGroup;
     }
 
+    public int getCategoryId(){
+        return categoryId;
+    }
+
+    public int getUserId(){
+        return userId;
+    }
+
     public void setUserId(int UserId){
         this.userId = UserId;
     }

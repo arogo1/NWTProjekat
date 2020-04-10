@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.microserviceinquiry.Exception.SaveException;
+import com.example.microserviceinquiry.DAO.InquiryRepository;
 import com.example.microserviceinquiry.Exception.RequestException;
 import com.example.microserviceinquiry.Models.*;
 import com.example.microserviceinquiry.Service.IInquiryService;
@@ -29,13 +30,17 @@ public class InquiryController {
 
     @PostMapping("/saveInquiry")
     public String saveInquiry(@RequestBody Inquiry inquiry) {
-        QuestionGroup questionGroup = new QuestionGroup();
+        Inquiry saveInquiry = new Inquiry();
         Question question = new Question();
         Answer answer = new Answer();
-        inquiry.setCategoryId(1);
-        inquiry.setInquiryName("Proba");
-        inquiry.setUserId(2);
-        inquiry.setNumberOfQuestionGroup(2);
+        saveInquiry.setCategoryId(inquiry.getCategoryId());
+        saveInquiry.setInquiryName(inquiry.GetInquiryName());
+        saveInquiry.setNumberOfQuestionGroup(inquiry.GetNumberOfQuestion());
+        saveInquiry.setUserId(inquiry.getUserId());
+        // inquiry.setCategoryId(1);
+        // inquiry.setInquiryName("Proba");
+        // inquiry.setUserId(2);
+        // inquiry.setNumberOfQuestionGroup(2);
 
         try {
             inquiryService.save(inquiry);
@@ -43,32 +48,37 @@ public class InquiryController {
             throw new SaveException("Nije moguće spasiti inquiry");
         }
 
-        questionGroup.SetQuestionGroupName("Grupa");
-        questionGroup.SetNumberOfQuestion(4);
-        questionGroup.SetInquiry(inquiry);
-        try {
-            inquiryService.saveQuestionGroup(questionGroup);
-        } catch (Exception e) {
-            throw new SaveException("Nije moguće spasiti question group");
+        List<QuestionGroup> list = new ArrayList<QuestionGroup>();
+        list = inquiry.GetQuestionGroup();
+        for(int i = 0; i < list.size(); i++){
+            QuestionGroup questionGroup = new QuestionGroup();
+            questionGroup.SetQuestionGroupName(list.get(i).GetQuestionGroupName());
+            questionGroup.SetNumberOfQuestion(list.get(i).GetNumberOfQuestion());
+            questionGroup.SetInquiry(inquiry);
+            try {
+                inquiryService.saveQuestionGroup(questionGroup);
+            } catch (Exception e) {
+                throw new SaveException("Nije moguće spasiti question group");
+            }
         }
+        
+        // question.SetQuestion("Pitanje");
+        // question.SetQuestionGroupId(questionGroup);
 
-        question.SetQuestion("Pitanje");
-        question.SetQuestionGroupId(questionGroup);
+        // try {
+        //     inquiryService.saveQuestion(question);
+        // } catch (Exception e) {
+        //     throw new SaveException("Nije moguće spasiti question");
+        // }
 
-        try {
-            inquiryService.saveQuestion(question);
-        } catch (Exception e) {
-            throw new SaveException("Nije moguće spasiti question");
-        }
-
-        answer.SetAnswer("Odgovor");
-        answer.SetIsCorrect(true);
-        answer.SetQuestion(question);
-        try {
-            inquiryService.saveAnswer(answer);
-        } catch (Exception e) {
-            throw new SaveException("Nije moguće spasiti answer");
-        }
+        // answer.SetAnswer("Odgovor");
+        // answer.SetIsCorrect(true);
+        // answer.SetQuestion(question);
+        // try {
+        //     inquiryService.saveAnswer(answer);
+        // } catch (Exception e) {
+        //     throw new SaveException("Nije moguće spasiti answer");
+        // }
 
         return "Prosoo";
     }
