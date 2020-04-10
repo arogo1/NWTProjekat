@@ -6,10 +6,12 @@ import com.example.mikroservisquiz.models.DoneQuiz;
 import com.example.mikroservisquiz.repository.doneQuizRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
-public class doneQuiyService {
+@Component
+public class doneQuiyService implements IDoneQuizService {
     @Autowired
     doneQuizRepository repository;
 

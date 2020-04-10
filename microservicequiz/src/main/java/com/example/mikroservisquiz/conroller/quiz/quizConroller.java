@@ -1,6 +1,5 @@
 package com.example.mikroservisquiz.conroller.quiz;
 
-
 import com.example.mikroservisquiz.conroller.quiz.exception.quizNotFoundException;
 import com.example.mikroservisquiz.models.Quiz;
 import com.example.mikroservisquiz.servisi.quizService;
@@ -13,12 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
-@RestController
+@RestController("/quiz")
 public class quizConroller{
 
     @Autowired
     private quizService service;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @GetMapping("/quizes")
     public Iterable<Quiz>getQuizes(){
@@ -31,8 +34,20 @@ public class quizConroller{
     }
 
     @PostMapping("/quiz")
-    public void newQuiz(Quiz newQuiz) {
-         service.addQuiz(newQuiz);
+    public String newQuiz(@RequestBody Quiz newQuiz) {
+        String nesto = restTemplate.getForObject("http://inquiry-service/saveInquiry", String.class);
+        return nesto;
+        //return newQuiz.toString();
+        // Quiz quiz = new Quiz();
+        // quiz.SetInquiryId(newQuiz.getInquiryID());
+        // quiz.SetNumOfAns(newQuiz.getNumberOfAnswers());
+        // quiz.SetResult(newQuiz.getResul());
+        // quiz.SetInquiryId(1);
+        // quiz.SetNumOfAns(2);
+        // quiz.SetResult(3);
+        // return quiz.toString();
+        // service.addQuiz(newQuiz);
+        // return "Prosoo";
     }
     
     @DeleteMapping("/quiz/{id}")

@@ -1,5 +1,6 @@
 package com.example.mikroservisquiz.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,17 +14,21 @@ public class Quiz {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name="quizid")
   private Integer QuizID;
+  @Column(name="inquiryid")
   private Integer InquiryID;
 
   @PositiveOrZero(message="Result must be nonnegative")
+  @Column(name="result")
   private Integer Result;
 
+  @Column(name="number_of_answer")
   @PositiveOrZero(message="Number of answer must be nonnegative")
   private Integer NumberOfAnswer;
 
-  protected Quiz() {
-  }
+  // public Quiz() {
+  // }
 
   public Quiz(Integer InquiryID, Integer Result, Integer NumberOfAnswer) {
     this.InquiryID = InquiryID;

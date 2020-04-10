@@ -4,6 +4,7 @@
 
 
 //  import com.example.mikroservisquiz.models.DoneQuiz;
+// import com.example.mikroservisquiz.servisi.IDoneQuizService;
 // import com.example.mikroservisquiz.servisi.doneQuiyService;
 
 // import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@
 //  public class doneQuizController{
 
 //      @Autowired
-//      doneQuiyService service;
+//      IDoneQuizService service;
 
 //      @GetMapping("/doneQuizes")
 //      public Iterable<DoneQuiz>getQuizes(){
