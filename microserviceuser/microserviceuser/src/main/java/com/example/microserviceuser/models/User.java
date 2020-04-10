@@ -1,4 +1,4 @@
-package com.example.microserviceuser.modelDTO;
+package com.example.microserviceuser.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class UserDTO {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,10 +24,10 @@ public class UserDTO {
 	@Size(min = 8, message = "Password must be at least 8 characters long")
 	private String password;
 
-	public UserDTO() {
+	public User() {
 	}
 
-	public UserDTO(String username, String password) {
+	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
@@ -55,5 +55,10 @@ public class UserDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Override
+	  public String toString() {
+	    return String.format("User [id=%s, username=%s, password=%s]", userId, username, password);
+	  }
 
 }

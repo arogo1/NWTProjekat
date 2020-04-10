@@ -1,21 +1,21 @@
-package com.example.microserviceuser.modelDTO.error;
+package com.example.microserviceuser.models.error;
 
 import org.springframework.http.HttpStatus;
 
-public class ApiError extends RuntimeException {
+public class Exception extends RuntimeException {
 
     private HttpStatus status;
     private String message;
     private String details;
 
-    public ApiError (HttpStatus status, String message) {
+    public Exception (HttpStatus status, String message) {
         super();
         this.status = status;
         this.message = message;
         this.details = "";
     }
 
-    public ApiError (HttpStatus status, String message, String details) {
+    public Exception (HttpStatus status, String message, String details) {
         super();
         this.status = status;
         this.message = message;

@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.microserviceuser.controller.exception.UserNotFoundException;
-import com.example.microserviceuser.modelDTO.UserDTO;
+import com.example.microserviceuser.models.User;
 import com.example.microserviceuser.repository.UserRepository;
 import com.example.microserviceuser.service.IUserService;
 import com.example.microserviceuser.service.UserService;
@@ -24,8 +25,11 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	@GetMapping("/users")
-	public Iterable<UserDTO>getUsers(){
+	public Iterable<User>getUsers(){
         try {
         	System.out.println("try");
 			return userService.findAllUsers();
@@ -37,7 +41,7 @@ public class UserController {
 		}
     }
     @GetMapping("/user/{id}")
-    public Optional<UserDTO> findById(@PathVariable("id") Integer id){
+    public Optional<User> findById(@PathVariable("id") Integer id){
 			try {
 				return Optional.ofNullable(userService.findUserById(id).orElseThrow(() -> new UserNotFoundException(id)));
 			} catch (Exception e) {
@@ -48,7 +52,7 @@ public class UserController {
     }
     
     @PostMapping("/user")
-    public UserDTO newUser(UserDTO newUser) {
+    public User newUser(User newUser) {
         try {
 			return userService.saveUser(newUser);
 		} catch (Exception e) {
@@ -69,7 +73,7 @@ public class UserController {
     }
     
     @PutMapping("/user/{id}")
-    public UserDTO updateUser(@RequestBody UserDTO newUser, @PathVariable("id") Integer id) {
+    public User updateUser(@RequestBody User newUser, @PathVariable("id") Integer id) {
        try {
 		return userService.updateUser(newUser, id);
 	} catch (Exception e) {

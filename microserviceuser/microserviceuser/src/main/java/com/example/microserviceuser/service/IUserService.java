@@ -2,18 +2,18 @@ package com.example.microserviceuser.service;
 
 import java.util.Optional;
 
-import com.example.microserviceuser.modelDTO.UserDTO;
+import com.example.microserviceuser.models.User;
 
 public interface IUserService {
 	
-	public UserDTO saveUser (UserDTO user) throws Exception;
+	public User saveUser (User user) throws Exception;
 	
-	public Iterable<UserDTO> findAllUsers () throws Exception;
+	public Iterable<User> findAllUsers () throws Exception;
 	
-	public Optional<UserDTO> findUserById(Integer id) throws Exception;
+	public Optional<User> findUserById(Integer id) throws Exception;
 
 	void deleteUserById(Integer id) throws Exception;
 	
-	public UserDTO updateUser(UserDTO newUser, Integer id) throws Exception;
+	public User updateUser(User newUser, Integer id) throws Exception;
 
 }

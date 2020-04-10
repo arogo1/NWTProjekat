@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.microserviceuser.modelDTO.UserDTO;
+import com.example.microserviceuser.models.User;
 import com.example.microserviceuser.repository.IUserDAO;
 
 @Service
@@ -15,21 +15,21 @@ public class UserService implements IUserService {
     private IUserDAO userDAO;
 
 	@Override
-	public Iterable<UserDTO> findAllUsers() throws Exception {
+	public Iterable<User> findAllUsers() throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.findAll();
 		
 	}
 
 	@Override
-	public Optional<UserDTO> findUserById(Integer id) throws Exception {
+	public Optional<User> findUserById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.findById(id);
 	}
 
 
 	@Override
-	public UserDTO saveUser(UserDTO user) throws Exception {
+	public User saveUser(User user) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.save(user);
 	}
@@ -42,7 +42,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public UserDTO updateUser(UserDTO newUser, Integer id) throws Exception {
+	public User updateUser(User newUser, Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.findById(id)
                 .map(user -> {

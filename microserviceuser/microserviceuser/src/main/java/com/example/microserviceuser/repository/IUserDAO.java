@@ -2,15 +2,15 @@ package com.example.microserviceuser.repository;
 
 import java.util.Optional;
 
-import com.example.microserviceuser.modelDTO.UserDTO;
+import com.example.microserviceuser.models.User;
 
 public interface IUserDAO {
 	
-	 UserDTO save(UserDTO user) throws Exception;
+	 User save(User user) throws Exception;
 	 
-	 public Iterable<UserDTO> findAll() throws Exception;
+	 public Iterable<User> findAll() throws Exception;
 	 
-	 public Optional<UserDTO> findById(Integer id) throws Exception;
+	 public Optional<User> findById(Integer id) throws Exception;
 	 
 	 void deleteById(Integer id) throws Exception;
 }
