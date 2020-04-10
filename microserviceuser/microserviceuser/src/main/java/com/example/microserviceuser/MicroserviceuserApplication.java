@@ -10,10 +10,13 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.springframework.boot.CommandLineRunner;
 
 import com.example.microserviceuser.models.User;
 import com.example.microserviceuser.repository.UserRepository;
@@ -44,7 +47,7 @@ public class MicroserviceuserApplication {
 	    @Autowired
 	    IUserService userService;
 
-	   /*@RequestMapping(value = "/saveUser")
+	   @RequestMapping(value = "/saveUser")
 	    public String saveUser(User user) {
 	        System.out.println("Radi");
 	        user.setUsername("slekic");
@@ -60,7 +63,7 @@ public class MicroserviceuserApplication {
 	            return "error " + e;
 	        }
 	        return "spaseno";
-	    }*/
+	    }
 	 @RequestMapping("/test") 
 		 public String test() {
 			 return "nesto";
@@ -78,6 +81,23 @@ public class MicroserviceuserApplication {
 			 
 		 }
 	 }
+	 
+	/* @Component
+	 class DiscoveryClientExample implements CommandLineRunner {
+
+	     @Autowired
+	     private DiscoveryClient discoveryClient;
+
+	     @Override
+	     public void run(String... strings) throws Exception {
+	         discoveryClient.getInstances("inquiry-microservice").forEach((ServiceInstance s) -> {
+	             System.out.println(ToStringBuilder.reflectionToString(s));
+	         });
+	         discoveryClient.getInstances("quiz-microservice").forEach((ServiceInstance s) -> {
+	             System.out.println(ToStringBuilder.reflectionToString(s));
+	         });
+	     }
+	 }*/
 	 
 
 }
