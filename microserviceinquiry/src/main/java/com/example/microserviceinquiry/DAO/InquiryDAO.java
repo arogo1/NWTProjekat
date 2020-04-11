@@ -25,9 +25,15 @@ public class InquiryDAO implements IInquiryDAO {
     }
 
     @Override
-    public List<InquiryDAO> getInquiryByCategory(int categoryId) throws Exception {
+    public List<Inquiry> getInquiryByCategory(int categoryId) throws Exception {
         inquiryRepository.findById(categoryId);
         return null;
+    }
+
+    @Override
+    public Inquiry getInquiryById(int id) throws Exception {
+        Inquiry inquiry = inquiryRepository.findById(id).get();
+        return inquiry;
     }
 
 }

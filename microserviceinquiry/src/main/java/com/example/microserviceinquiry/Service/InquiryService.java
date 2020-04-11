@@ -58,4 +58,9 @@ public class InquiryService implements IInquiryService {
         return answers;
     }
 
+    @Override
+    public Inquiry getInquiryById(int id) throws Exception {
+        return inquiryDAO.getInquiryById(id);
+    }
+
 }

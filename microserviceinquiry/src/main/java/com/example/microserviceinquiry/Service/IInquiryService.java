@@ -14,4 +14,6 @@ public interface IInquiryService {
     boolean saveAnswer(Answer answer) throws Exception;
 
     List<Answer> getAnswer(int questionId) throws Exception;
+
+    Inquiry getInquiryById(int id) throws Exception;
 }
