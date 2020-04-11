@@ -2,7 +2,9 @@ package com.example.microserviceuser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -12,7 +14,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -26,12 +31,12 @@ import com.example.microserviceuser.service.UserService;
 import java.util.List;
 
 
-@SpringBootApplication
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @RestController
 @ConfigurationPropertiesScan
 @ComponentScan(basePackages={"com.example.microserviceuser"})
 @EnableEurekaClient
-
+@EnableAutoConfiguration
 public class MicroserviceuserApplication {
 	
 	@Bean
@@ -47,11 +52,12 @@ public class MicroserviceuserApplication {
 	    @Autowired
 	    IUserService userService;
 
-	   @RequestMapping(value = "/saveUser")
-	    public String saveUser(User user) {
+	   @PostMapping(value = "/saveUser")
+	    public String saveUser(@RequestBody User user) {
 	        System.out.println("Radi");
 	        user.setUsername("slekic");
-	        user.setPassword("test123456");
+			user.setPassword("test123456");
+			user.setUserId(1);
 	        System.out.println(user.getUsername());
 	        try {
 	            //userRepository.save(user);

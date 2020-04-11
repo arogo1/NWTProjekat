@@ -10,18 +10,22 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="User")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="userId")
 	private int userId;
 
 	@NotNull
 	@Size(min = 3, message = "Username must be at least 3 characters long")
+	@Column(name="Username")
 	private String username;
 
 	@NotNull
 	@Size(min = 8, message = "Password must be at least 8 characters long")
+	@Column(name="Password")
 	private String password;
 
 	public User() {
