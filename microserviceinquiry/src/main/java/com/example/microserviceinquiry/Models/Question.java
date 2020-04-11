@@ -1,9 +1,12 @@
 package com.example.microserviceinquiry.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,24 +26,23 @@ public class Question {
     @Column(name="QuestionId")
     private int questionId;
 
-    //@NotEmpty
+    @NotEmpty
     @Size(min=3)
     @Column(name="Question")
     private String question;
 
-    //@NotNull
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="QuestionGroupId")
     private QuestionGroup questionGroup;
 
-    //@NotNull
-    @OneToMany(mappedBy="answer")
-    private List<Answer> answers;
+    @NotNull
+    @OneToMany(mappedBy="question", cascade = CascadeType.ALL)
+    private List<Answer> answers = new ArrayList<Answer>();
 
     public Question(){}
 
-    public Question(int QuestionGroupId, String Question){
-        //questionGroupId = QuestionGroupId;
+    public Question(String Question){
         question = Question;
     }
 

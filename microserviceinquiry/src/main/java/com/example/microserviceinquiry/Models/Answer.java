@@ -1,7 +1,9 @@
 package com.example.microserviceinquiry.Models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,17 +22,17 @@ public class Answer {
     @Column(name="answer_id")
     private int answerId;
 
-    //@NotEmpty
+    @NotEmpty
     @Size(min=3)
     @Column(name="answer")
     private String answer;
 
-    //@NotNull
+    @NotNull
     @Column(name="is_correct")
     private boolean isCorrect;
 
-    //@NotNull
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="question_id")
     private Question question;
 

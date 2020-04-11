@@ -6,14 +6,14 @@ import com.example.microserviceuser.models.User;
 
 public interface IUserService {
 	
-	public User saveUser (User user);
+	public void saveUser (User user);
 	
-	public Iterable<User> findAllUsers ();
+	// public Iterable<User> findAllUsers ();
 	
-	public Optional<User> findUserById(Integer id);
+	// public Optional<User> findUserById(Integer id);
 
-	public void deleteUserById(Integer id);
+	// public void deleteUserById(Integer id);
 	
-	public User updateUser(User newUser, Integer id);
+	// public User updateUser(User newUser, Integer id);
 
 }

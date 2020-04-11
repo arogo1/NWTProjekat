@@ -1,7 +1,9 @@
 package com.example.microserviceinquiry.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,34 +23,36 @@ public class Inquiry{
     @Column(name="InquiryId")
     private int inquiryId;
 
-    //@NotNull
+    @NotNull
     @Column(name="UserId")
     private int userId;
 
-    //@NotNull
+    @NotNull
     @Column(name="CategoryId")
     private int categoryId;
 
-    //@NotEmpty
+    @NotEmpty
     @Size(min=3)
-    @Column(name="InquiryName")
+    @Column(name="inquiry_name")
     private String inquiryName;
 
-    //@NotNull
+    @NotNull
     @Column(name="NumberOfQuestionGroup")
     private int numberOfQuestionGroup;
 
-    //@NotNull
-    @OneToMany(mappedBy="inquiry")
-    private List<QuestionGroup> questionGroups;
+    @NotNull
+    @OneToMany(mappedBy="inquiry", cascade = CascadeType.ALL)
+    private List<QuestionGroup> questionGroups = new ArrayList<QuestionGroup>();
 
     public Inquiry(){}
 
-    public Inquiry(int UserId, int CategoryId, String InquiryName, int NumberOfQuestionGroup){
+    public Inquiry(int UserId, int CategoryId, String InquiryName, int NumberOfQuestionGroup, 
+        List<QuestionGroup> questionGroups){
         this.userId = UserId;
         this.categoryId = CategoryId;
         this.inquiryName = InquiryName;
         this.numberOfQuestionGroup = NumberOfQuestionGroup;
+        this.questionGroups = questionGroups;
     }
 
     public List<QuestionGroup> GetQuestionGroup(){
@@ -101,6 +105,6 @@ public class Inquiry{
 
     @Override
 	public String toString() {
-		return inquiryName + " " + numberOfQuestionGroup + " " + categoryId + " " + inquiryId;
+		return inquiryName + " " + numberOfQuestionGroup + " " + categoryId + " " + inquiryId + " " + userId;
 	}
 }
