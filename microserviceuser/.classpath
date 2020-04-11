@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="microserviceuser/.mvn/wrapper"/>
-	<classpathentry kind="src" path="microserviceuser/src/main/java"/>
-	<classpathentry kind="src" path="microserviceuser/src/test/java"/>
-	<classpathentry kind="lib" path="microserviceuser/target/microserviceuser-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="output" path="microserviceuser/target/classes"/>
-</classpath>

@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.microserviceuser.controller.exception.UserNotFoundException;
 import com.example.microserviceuser.models.User;
-import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
 import com.example.microserviceuser.service.IUserService;
 import com.example.microserviceuser.service.UserService;
@@ -24,41 +23,64 @@ import com.example.microserviceuser.service.UserService;
 public class UserController {
 	
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 	
 	@Autowired
 	private RestTemplate restTemplate;
 	
 	@GetMapping("/users")
 	public Iterable<User>getUsers(){
-        return userService.findAllUsers();
+        try {
+        	System.out.println("try");
+			return userService.findAllUsers();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("catch");
+			e.printStackTrace();
+			return null;
+		}
     }
-	
     @GetMapping("/user/{id}")
-    public User findById(@PathVariable("id") Integer id){
-		return userService.findUserById(id).orElseThrow(() -> new ResourceNotFoundException("None of users found!"));	
+    public Optional<User> findById(@PathVariable("id") Integer id){
+			try {
+				return Optional.ofNullable(userService.findUserById(id).orElseThrow(() -> new UserNotFoundException(id)));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
     }
     
     @PostMapping("/user")
     public User newUser(User newUser) {
-    	Iterable<User> allUsers = userService.findAllUsers();
-		for (User usr : allUsers) {
-			if(usr.getUsername().contentEquals(newUser.getUsername())) {
-				throw new ResourceNotFoundException("Already exists user with this username");
-			}
-		}	
-		return userService.saveUser(newUser);
+        try {
+			return userService.saveUser(newUser);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
     }
 
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable Integer id) {
-		userService.deleteUserById(id);
-		
+        try {
+			userService.deleteUserById(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     @PutMapping("/user/{id}")
     public User updateUser(@RequestBody User newUser, @PathVariable("id") Integer id) {
-       return userService.updateUser(newUser, id);
+       try {
+		return userService.updateUser(newUser, id);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return null;
+	}
     }
 
 }
