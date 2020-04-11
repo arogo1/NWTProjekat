@@ -27,14 +27,13 @@ public class Quiz {
   @PositiveOrZero(message="Number of answer must be nonnegative")
   private Integer NumberOfAnswer;
 
-  // public Quiz() {
-  // }
-
   public Quiz(Integer InquiryID, Integer Result, Integer NumberOfAnswer) {
     this.InquiryID = InquiryID;
     this.Result = Result;
     this.NumberOfAnswer = NumberOfAnswer;
 
+  }
+  protected Quiz() {
   }
 
   public Integer getId() {
