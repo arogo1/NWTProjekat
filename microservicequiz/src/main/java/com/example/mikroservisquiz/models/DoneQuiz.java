@@ -24,7 +24,7 @@ public class DoneQuiz{
     public DoneQuiz(Integer id){
       UserID = id;
     }
-    public int getUserId() {
+    public Integer getUserId() {
         return UserID;
       }
 
@@ -32,7 +32,7 @@ public class DoneQuiz{
         this.UserID = id;
       }
     
-      public int getDoneQuizID() {
+      public Integer getDoneQuizID() {
         return DoneQuizID;
       }
 

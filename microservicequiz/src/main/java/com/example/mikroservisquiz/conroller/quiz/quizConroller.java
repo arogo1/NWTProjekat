@@ -53,19 +53,19 @@ public class quizConroller{
         return service.editQuiz(newquiz, id);
     }
 
-    @GetMapping("/doneQuizes")
-      public Iterable<DoneQuiz>getDoneQuizes(){
-         return doneQuiyService.getAllDneQuizes();
-     }
+    // @GetMapping("/doneQuizes")
+    //   public Iterable<DoneQuiz>getDoneQuizes(){
+    //      return doneQuiyService.getAllDneQuizes();
+    //  }
 
-     @PostMapping("/doneQuiz")
-      public void newQuiz(@RequestBody DoneQuiz newDoneQuiz) {
-           doneQuiyService.addDoneQuiz(newDoneQuiz);
-      }
+    //  @PostMapping("/doneQuiz")
+    //   public void newQuiz(@RequestBody DoneQuiz newDoneQuiz) {
+    //        doneQuiyService.addDoneQuiz(newDoneQuiz);
+    //   }
 
-      @DeleteMapping("/doneQuiz/{id}")
-      public void deleteDoneQuiz(@PathVariable Integer id){ 
-          doneQuiyService.deleteDoneQuiz(id); 
-      }
+    //   @DeleteMapping("/doneQuiz/{id}")
+    //   public void deleteDoneQuiz(@PathVariable Integer id){ 
+    //       doneQuiyService.deleteDoneQuiz(id); 
+    //   }
      
 }
