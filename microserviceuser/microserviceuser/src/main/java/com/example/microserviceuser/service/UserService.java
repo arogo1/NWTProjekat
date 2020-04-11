@@ -6,51 +6,52 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.microserviceuser.models.User;
-import com.example.microserviceuser.repository.IUserDAO;
+import com.example.microserviceuser.models.error.ResourceNotFoundException;
+import com.example.microserviceuser.repository.UserRepository;
 
 @Service
 public class UserService implements IUserService {
 
     @Autowired
-    private IUserDAO userDAO;
+    private UserRepository userRepository;
 
 	@Override
-	public Iterable<User> findAllUsers() throws Exception {
+	public Iterable<User> findAllUsers() {
 		// TODO Auto-generated method stub
-		return userDAO.findAll();
+		return userRepository.findAll();
 		
 	}
 
 	@Override
-	public Optional<User> findUserById(Integer id) throws Exception {
+	public Optional<User> findUserById(Integer id) {
 		// TODO Auto-generated method stub
-		return userDAO.findById(id);
+		return userRepository.findById(id);
 	}
 
 
 	@Override
-	public User saveUser(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return userDAO.save(user);
+	public User saveUser(User user) {
+		// TODO Auto-generated method stub	
+		return userRepository.save(user);
 	}
 
 	@Override
-	public void deleteUserById(Integer id) throws Exception {
+	public void deleteUserById(Integer id) {
 		// TODO Auto-generated method stub
-		userDAO.deleteById(id);
+		userRepository.deleteById(id);
 		
 	}
 
 	@Override
-	public User updateUser(User newUser, Integer id) throws Exception {
+	public User updateUser(User newUser, Integer id) {
 		// TODO Auto-generated method stub
-		return userDAO.findById(id)
+		return userRepository.findById(id)
                 .map(user -> {
                     user.setUserId(newUser.getUserId()); 
                     user.setUsername(newUser.getUsername());
                     user.setPassword(newUser.getPassword());
                     try {
-						return userDAO.save(user);
+						return userRepository.save(user);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -58,7 +59,7 @@ public class UserService implements IUserService {
 					}
                 }).orElseGet(() -> {
 					try {
-						return userDAO.save(newUser);
+						return userRepository.save(newUser);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
