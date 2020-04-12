@@ -1,0 +1,1 @@
+U postmanu ne ispuju se vrijednosti objekata jer ne postoji mapiranje u JSON file, testirano u debugeru i vrati očikave rezultate

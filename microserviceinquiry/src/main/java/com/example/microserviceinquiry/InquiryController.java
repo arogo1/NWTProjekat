@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.microserviceinquiry.Exception.SaveException;
-import com.example.microserviceinquiry.DAO.InquiryRepository;
 import com.example.microserviceinquiry.Exception.RequestException;
 import com.example.microserviceinquiry.Models.*;
 import com.example.microserviceinquiry.Service.IInquiryService;
@@ -35,8 +34,8 @@ public class InquiryController {
 
     @PostMapping("/saveInquiry")
     public ResponseEntity<Inquiry> saveInquiry(@RequestBody Inquiry inquiry) {
-        // int userId = restTemplate.getForObject("Http://user-microservice/getUser()",
-        // int.class);
+        // int userId = restTemplate.getForObject("Http://user-microservice/getUser", int.class);
+        //inquiry.setUserId(userId);
         Inquiry saveInquiry = new Inquiry();// Hardcode podaci
         saveInquiry.SetCategoryId(3);
         saveInquiry.SetInquiryName("Test");

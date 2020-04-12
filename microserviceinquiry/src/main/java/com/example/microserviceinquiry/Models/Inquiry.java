@@ -33,7 +33,7 @@ public class Inquiry{
 
     @NotEmpty
     @Size(min=3)
-    @Column(name="inquiry_name")
+    @Column(name="inquiryName")
     private String inquiryName;
 
     @NotNull
