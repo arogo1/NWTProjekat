@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class QuestionDAO implements IQuestionDAO {
 
-    @Autowired
-    QuestionRepository questionRepository;
+    // @Autowired
+    // QuestionRepository questionRepository;
 
-    @Override
-    public boolean save(Question question) throws Exception {
-        questionRepository.save(question);
-        return false;
-    }
+    // @Override
+    // public boolean save(Question question) throws Exception {
+    //     questionRepository.save(question);
+    //     return false;
+    // }
 
 }

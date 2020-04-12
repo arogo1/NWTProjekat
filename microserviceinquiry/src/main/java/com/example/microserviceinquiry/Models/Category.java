@@ -9,17 +9,17 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="Category")
+@Table(name="category")
 public class Category {
 
     @Id
     @GeneratedValue
-    @Column(name="CategoryId")
+    @Column(name="category_id")
     private int categoryId;
 
-    //@NotEmpty
+    @NotEmpty
     @Size(min=3)
-    @Column(name="CategoryName")
+    @Column(name="category_name")
     private String categoryName;
 
     public Category(){}

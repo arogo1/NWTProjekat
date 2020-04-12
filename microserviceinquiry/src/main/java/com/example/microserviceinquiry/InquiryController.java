@@ -35,20 +35,22 @@ public class InquiryController {
 
     @PostMapping("/saveInquiry")
     public ResponseEntity<Inquiry> saveInquiry(@RequestBody Inquiry inquiry) {
-        //int userId = restTemplate.getForObject("Http://user-microservice/getUser()", int.class);
-        Inquiry saveInquiry = new Inquiry();
+        // int userId = restTemplate.getForObject("Http://user-microservice/getUser()",
+        // int.class);
+        Inquiry saveInquiry = new Inquiry();// Hardcode podaci
+        saveInquiry.SetCategoryId(3);
+        saveInquiry.SetInquiryName("Test");
+        saveInquiry.SetNumberOfQuestionGroup(4);
+        saveInquiry.SetUserId(3);
         QuestionGroup questionGroup = new QuestionGroup("Grupa2", 5);
         QuestionGroup questionGroup1 = new QuestionGroup("Grupa3", 5);
-        questionGroup.SetInquiry(inquiry);
-        questionGroup1.SetInquiry(inquiry);
+        questionGroup.SetInquiry(saveInquiry);
+        questionGroup1.SetInquiry(saveInquiry);
         List<QuestionGroup> lista = new ArrayList<QuestionGroup>();
         lista.add(questionGroup);
         Question question = new Question("Pitanje");
         Answer answer = new Answer("Odgovor", true);
-        saveInquiry.setCategoryId(inquiry.getCategoryId());
-        saveInquiry.setInquiryName(inquiry.GetInquiryName());
-        saveInquiry.setNumberOfQuestionGroup(inquiry.GetNumberOfQuestion());
-        saveInquiry.setUserId(inquiry.getUserId());
+
         saveInquiry.GetQuestionGroup().add(questionGroup);
         saveInquiry.GetQuestionGroup().add(questionGroup1);
 
@@ -60,29 +62,67 @@ public class InquiryController {
 
         try {
             inquiryService.save(saveInquiry);
+            // Metodi save ce se proslijediti parametar inquiry,
+            // na frontendu je zamisljeno da se podatak pripremi backendu
+            // inquiryService.save(inquiry);
+
         } catch (Exception e) {
             throw new SaveException("Nije moguće spasiti inquiry");
         }
         return ResponseEntity.ok(inquiry);
     }
 
-    @GetMapping("/getAnswer")
-    public List<Answer> getAnswer(@PathVariable int questionId) {
-        List<Answer> answers = new ArrayList<Answer>();
+    @GetMapping("/getInquiryById/{id}")
+    public Inquiry getInquiryById(@PathVariable int id) {
         try {
-            answers = inquiryService.getAnswer(10);
+            return inquiryService.getInquiryById(id);
         } catch (Exception e) {
-            throw new RequestException("Nije moguće dohvatit traženi inquiry");
+            throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
         }
-        return answers;
     }
 
-    @GetMapping("/getInquiryById")
-    public String getInquiryById() {
+    @GetMapping("/getInquiryId/{id}")
+    public int getInquiryId(@PathVariable int id) {
         try {
-            return inquiryService.getInquiryById(19).toString();
+            return inquiryService.getInquiryById(id).GetInquiryId();
         } catch (Exception e) {
-            throw new RequestException("Ne postoji inquiry sa proslijedjenim id");
+            throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
+        }
+    }
+
+    @GetMapping("/getCategories")
+    public List<Category> getCatergories() {
+        try {
+            return inquiryService.getCategories();
+        } catch (Exception e) {
+            throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
+        }
+    }
+
+    @GetMapping("/getInquiryByCategory/{categoryId}")
+    public List<Inquiry> getInquiryByCategoryId(@PathVariable int categoryId) {
+        try {
+            return inquiryService.getInquiryByCategoryId(categoryId);
+        } catch (Exception e) {
+            throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
+        }
+    }
+
+    @GetMapping("/getInquiryByName/{inquiryName}")
+    public List<Inquiry> getInquiryByCategoryId(@PathVariable String inquiryName) {
+        try {
+            return inquiryService.getInquiryByName(inquiryName);
+        } catch (Exception e) {
+            throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
+        }
+    }
+
+    @GetMapping("/getInquiryByUserId/{userId}")
+    public List<Inquiry> getInquiryByUserId(@PathVariable int userId) {
+        try {
+            return inquiryService.getInquiryByUserId(userId);
+        } catch (Exception e) {
+            throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
         }
     }
 }

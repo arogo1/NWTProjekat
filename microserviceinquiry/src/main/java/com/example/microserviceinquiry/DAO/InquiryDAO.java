@@ -1,5 +1,6 @@
 package com.example.microserviceinquiry.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.microserviceinquiry.Models.Inquiry;
@@ -19,16 +20,13 @@ public class InquiryDAO implements IInquiryDAO {
     }
 
     @Override
-    public List<Inquiry> getInquiryByName(String InquiryName) {
-        //inquiryRepository.getInquiryByName(InquiryName;)
-        return null;
+    public List<Inquiry> getInquiryByName(String inquiryName) {
+        List<Inquiry> inquirys = new ArrayList<Inquiry>();
+        Iterable<Inquiry> response = inquiryRepository.findByInquiryName(inquiryName);
+        response.forEach(inquirys::add);
+        return inquirys;
     }
 
-    @Override
-    public List<Inquiry> getInquiryByCategory(int categoryId) throws Exception {
-        inquiryRepository.findById(categoryId);
-        return null;
-    }
 
     @Override
     public Inquiry getInquiryById(int id) throws Exception {
@@ -36,4 +34,19 @@ public class InquiryDAO implements IInquiryDAO {
         return inquiry;
     }
 
+    @Override
+    public List<Inquiry> getInquiryByCategoryId(int categoryId) throws Exception{
+        List<Inquiry> inquirys = new ArrayList<Inquiry>();
+        Iterable<Inquiry> response = inquiryRepository.findByCategoryId(categoryId);
+        response.forEach(inquirys::add);
+        return inquirys;
+    }
+
+    @Override
+    public List<Inquiry> getInquiryByUserId(int userId) throws Exception{
+        List<Inquiry> inquirys = new ArrayList<Inquiry>();
+        Iterable<Inquiry> response = inquiryRepository.findByUserId(userId);
+        response.forEach(inquirys::add);
+        return inquirys;
+    }
 }

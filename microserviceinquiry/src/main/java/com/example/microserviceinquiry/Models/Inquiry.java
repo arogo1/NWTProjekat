@@ -79,27 +79,27 @@ public class Inquiry{
         return numberOfQuestionGroup;
     }
 
-    public int getCategoryId(){
+    public int GetCategoryId(){
         return categoryId;
     }
 
-    public int getUserId(){
+    public int GetUserId(){
         return userId;
     }
 
-    public void setUserId(int UserId){
+    public void SetUserId(int UserId){
         this.userId = UserId;
     }
 
-    public void setCategoryId(int CategoryId){
+    public void SetCategoryId(int CategoryId){
         this.categoryId = CategoryId;
     }
 
-    public void setInquiryName(String InquiryName){
+    public void SetInquiryName(String InquiryName){
         this.inquiryName = InquiryName;
     }
 
-    public void setNumberOfQuestionGroup(int NumberOfQuestionGroup){
+    public void SetNumberOfQuestionGroup(int NumberOfQuestionGroup){
         this.numberOfQuestionGroup = NumberOfQuestionGroup;
     }
 

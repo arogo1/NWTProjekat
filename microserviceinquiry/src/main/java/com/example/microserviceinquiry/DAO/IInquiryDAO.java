@@ -7,9 +7,11 @@ import com.example.microserviceinquiry.Models.Inquiry;
 public interface IInquiryDAO {
     boolean save(Inquiry inquiry) throws Exception;
 
-    List<Inquiry> getInquiryByName(String InquiryId) throws Exception;
-
-    List<Inquiry> getInquiryByCategory(int categoryId) throws Exception;
+    List<Inquiry> getInquiryByName(String inquiryNmame) throws Exception;
 
     Inquiry getInquiryById(int id) throws Exception;
+
+    List<Inquiry> getInquiryByCategoryId(int categoryId) throws Exception;
+
+    List<Inquiry> getInquiryByUserId(int userId) throws Exception;
 }
