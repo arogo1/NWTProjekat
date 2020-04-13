@@ -15,19 +15,19 @@ public class Quiz {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name="quizid")
-  private Integer QuizID;
+  private int QuizID;
   @Column(name="inquiryid")
-  private Integer InquiryID;
+  private int InquiryID;
 
   @PositiveOrZero(message="Result must be nonnegative")
   @Column(name="result")
-  private Integer Result;
+  private int Result;
 
   @Column(name="number_of_answer")
   @PositiveOrZero(message="Number of answer must be nonnegative")
-  private Integer NumberOfAnswer;
+  private int NumberOfAnswer;
 
-  public Quiz(Integer InquiryID, Integer Result, Integer NumberOfAnswer) {
+  public Quiz(int InquiryID, int Result, int NumberOfAnswer) {
     this.InquiryID = InquiryID;
     this.Result = Result;
     this.NumberOfAnswer = NumberOfAnswer;
@@ -36,35 +36,35 @@ public class Quiz {
   protected Quiz() {
   }
 
-  public Integer getId() {
+  public int getId() {
     return QuizID;
   }
 
-  public void SetQuizId(Integer Id) {
+  public void SetQuizId(int Id) {
     this.QuizID = Id;
   }
 
-  public Integer getInquiryID() {
+  public int getInquiryID() {
     return InquiryID;
   }
 
-  public void SetInquiryId(Integer inquiryId) {
+  public void SetInquiryId(int inquiryId) {
     this.InquiryID = inquiryId;
   }
 
-  public Integer getResul() {
+  public int getResul() {
     return Result;
   }
 
-  public void SetResult(Integer result) {
+  public void SetResult(int result) {
     this.Result = result;
   }
 
-  public Integer getNumberOfAnswers() {
+  public int getNumberOfAnswers() {
     return NumberOfAnswer;
   }
 
-  public void SetNumOfAns(Integer num) {
+  public void SetNumOfAns(int num) {
     this.NumberOfAnswer = num;
   }
 

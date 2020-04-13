@@ -12,32 +12,45 @@ public class DoneQuiz{
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
+  private int doneQuizID;
+
+  @Positive(message="Result must be nonnegative")
   @Column(name="userid")
-    private Integer UserID;
+    private int UserID;
 
-    //@Positive(message="Result must be nonnegative")
+    @Positive(message="Result must be nonnegative")
     @Column(name="quizid")
-    private Integer DoneQuizID;
+    private int QuizID;
 
-    protected DoneQuiz() {}
+    public DoneQuiz() {}
     
-    public DoneQuiz(Integer id){
-      UserID = id;
+    public DoneQuiz(int userid, int quizid){
+      QuizID = quizid;
+      UserID = userid;
     }
-    public Integer getUserId() {
+
+    public int getdoneQuizID() {
+      return doneQuizID;
+    }
+
+    public void setdoneQuizID(int id){
+      this.doneQuizID = id;
+    }
+
+    public int getUserId() {
         return UserID;
       }
 
-      public void setUserId(Integer id){
+      public void setUserId(int id){
         this.UserID = id;
       }
     
-      public Integer getDoneQuizID() {
-        return DoneQuizID;
+      public int getQuizID() {
+        return QuizID;
       }
 
-      public void setDoneQuizId(Integer id){
-        this.DoneQuizID = id;
+      public void setQuizId(int id){
+        this.QuizID = id;
       }
     
     

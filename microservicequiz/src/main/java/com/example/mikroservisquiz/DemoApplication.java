@@ -1,7 +1,6 @@
 package com.example.mikroservisquiz;
 
 import com.example.mikroservisquiz.models.DoneQuiz;
-import com.example.mikroservisquiz.models.Quiz;
 import com.example.mikroservisquiz.repository.doneQuizRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,16 +57,17 @@ public class DemoApplication {
 	// return "Uneseno u bazicu";
 	// }
 
-	@RequestMapping(value="/saveDoneQuiz")
-	public String saveInquiry(DoneQuiz done_quiz) {
-		done_quiz.setUserId(1);
-	try {
-		doneQuizRepository.save(done_quiz);
-	} catch (Exception e) {
-		e.printStackTrace();
-		return "error " + e;
-	}
-	return "Uneseno u bazicu1";
-	}
+	// @RequestMapping(value="/saveDoneQuiz")
+	// public String saveInquiry(DoneQuiz done_quiz) {
+	// 	done_quiz.setUserId(4);
+	// 	done_quiz.setQuizId(9);
+	// try {
+	// 	doneQuizRepository.save(done_quiz);
+	// } catch (Exception e) {
+	// 	e.printStackTrace();
+	// 	return "error " + e;
+	// }
+	// return "Uneseno u bazicu1";
+	// }
 
 }

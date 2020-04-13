@@ -40,7 +40,7 @@ public class UserController {
 	
     @GetMapping("/user/{id}")
     public User findById(@PathVariable("id") Integer id){
-    	if(userService.findUserById(id).isEmpty())
+    	if(userService.findUserById(id)==null)
     		throw new ResourceNotFoundException("No user with this id found!");
 		return userService.findUserById(id).get();	
     }
@@ -77,7 +77,7 @@ public class UserController {
     
     @PutMapping("/user/{id}")
     public User updateUser(@RequestBody User newUser, @PathVariable("id") Integer id) {
-    	if(userService.findUserById(id).isEmpty()) {
+    	if(userService.findUserById(id)==null) {
     		if(userService.findUserByUsername(newUser.getUsername())==null)
     			return userService.saveUser(newUser);
     		throw new ResourceNotFoundException("Already exists user with this username!");

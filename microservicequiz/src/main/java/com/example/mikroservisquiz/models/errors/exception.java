@@ -15,6 +15,13 @@ public class exception extends RuntimeException {
         this.details = "";
     }
 
+    public exception(String message) {
+        super();
+        this.message = message;
+        this.details = "";
+    }
+
+
     public exception(HttpStatus status, String message, String details) {
         super();
         this.status = status;

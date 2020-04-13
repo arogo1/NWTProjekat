@@ -154,4 +154,13 @@ public class InquiryController {
             throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
         }
     }
+
+    @GetMapping("/getNumberOfQuestion/{inquiryId}")
+    public int getNumberOfQuestion(@PathVariable int inquiryId) {
+        try {
+            return inquiryService.getInquiryById(inquiryId).GetNumberOfQuestion();
+        } catch (Exception e) {
+            throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
+        }
+    }
 }
