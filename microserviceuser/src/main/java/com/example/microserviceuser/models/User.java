@@ -27,6 +27,10 @@ public class User {
 	@Size(min = 8, message = "Password must be at least 8 characters long")
 	@Column(name="Password")
 	private String password;
+	
+	@NotNull
+	@Column(name="Loged")
+	private boolean loged;
 
 	public User() {
 	}
@@ -34,12 +38,14 @@ public class User {
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
+		this.loged = false;
 	}
 	
 	public User(Integer id, String username, String password) {
 		this.userId = id;
 		this.username = username;
 		this.password = password;
+		this.loged = false;
 	}
 
 	public int getUserId() {
@@ -64,6 +70,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public boolean getLoged() {
+		return loged;
+	}
+
+	public void setLoged(boolean loged) {
+		this.loged = loged;
 	}
 	
 	@Override

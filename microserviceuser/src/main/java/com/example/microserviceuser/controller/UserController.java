@@ -87,5 +87,31 @@ public class UserController {
 		throw new ResourceNotFoundException("Cannot update because already exists user with this username!");
        
     }
+    
+    @PostMapping("/user/login")
+    public String login(User user) {
+    	if(userService.login(user)) 
+    		return "User loged in";
+    	return "Something went wrong";
+    	
+    }
+    
+    @PostMapping("/user/logout")
+    public String logout(User user) {
+    	if(userService.logout(user)) 
+    		return "User loged out";
+    	return "Something went wrong";
+    }
+    
+    @GetMapping("/user-microservice/getLogedUser")
+    public Integer getLogedUser() {
+    	Iterable<User> allUsers = userService.findAllUsers();
+		for (User usr : allUsers) {
+			if(usr.getLoged()) {
+				return usr.getUserId();
+			}
+		}
+		throw new ResourceNotFoundException("No loged user found!");
+    }
 
 }

@@ -76,5 +76,39 @@ public class UserService implements IUserService {
 		userRepository.deleteAll();
 	}
 
+	@Override
+	public boolean login(User user) {
+		// TODO Auto-generated method stub
+		Iterable<User> allUsers = userRepository.findAll();
+		Iterable<User> logedUsers = userRepository.findAll();
+		for (User usr : allUsers) {
+			if(usr.getUsername().contentEquals(user.getUsername()) && usr.getPassword().contentEquals(user.getPassword())) {
+				for(User logedusr : logedUsers) {
+					if(logedusr.getLoged()) 
+						return false;
+				}
+				usr.setLoged(true);
+				userRepository.save(usr);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean logout(User user) {
+		// TODO Auto-generated method stub
+		Iterable<User> allUsers = userRepository.findAll();
+		for (User usr : allUsers) {
+			if(usr.getUsername().contentEquals(user.getUsername()) && usr.getPassword().contentEquals(user.getPassword())) {
+				usr.setLoged(false);
+				userRepository.save(usr);
+				return true;
+			}
+		}
+		return false;
+		
+	}
+
 	
 }

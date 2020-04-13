@@ -20,5 +20,9 @@ public interface IUserService {
 	public User updateUser(User newUser, Integer id);
 	
 	public void deleteAllUsers();
+	
+	public boolean login(User user);
+	
+	public boolean logout(User user);
 
 }
