@@ -63,6 +63,7 @@ public class MicroserviceuserApplication {
 	            //userRepository.save(user);
 	        	userService.saveUser(user);
 	            System.out.println("repository");
+	            System.out.println(userService.findUserById(1).get());
 	        } catch (Exception e) {
 	        	System.out.println("error");
 	            e.printStackTrace();
@@ -88,20 +89,22 @@ public class MicroserviceuserApplication {
 		 }
 	 }
 	 
-	/* @Component
-	 class DiscoveryClientExample implements CommandLineRunner {
+	 /*@Component
+	 class DiscoveryClientExample {
 
 	     @Autowired
 	     private DiscoveryClient discoveryClient;
 
-	     @Override
-	     public void run(String... strings) throws Exception {
-	         discoveryClient.getInstances("inquiry-microservice").forEach((ServiceInstance s) -> {
+	     public List<ServiceInstance> run(String applicationName) throws Exception {
+	    	 discoveryClient.getInstances(applicationName).forEach((ServiceInstance s) -> {
+	         System.out.println(ToStringBuilder.reflectionToString(s));
+	    	 });
+	         return discoveryClient.getInstances(applicationName);
+	         
+	         /*discoveryClient.getInstances("quiz-microservice").forEach((ServiceInstance s) -> {
 	             System.out.println(ToStringBuilder.reflectionToString(s));
 	         });
-	         discoveryClient.getInstances("quiz-microservice").forEach((ServiceInstance s) -> {
-	             System.out.println(ToStringBuilder.reflectionToString(s));
-	         });
+	     
 	     }
 	 }*/
 	 
