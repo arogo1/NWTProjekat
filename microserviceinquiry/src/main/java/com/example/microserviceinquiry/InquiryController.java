@@ -34,8 +34,8 @@ public class InquiryController {
 
     @PostMapping("/saveInquiry")
     public ResponseEntity<Inquiry> saveInquiry(@RequestBody Inquiry inquiry) {
-        // int userId = restTemplate.getForObject("Http://user-microservice/getUser", int.class);
-        //inquiry.setUserId(userId);
+        int userId = restTemplate.getForObject("Http://user-microservice//user-microservice/getLogedUser", int.class);
+        inquiry.SetUserId(userId);
         Inquiry saveInquiry = new Inquiry();// Hardcode podaci
         saveInquiry.SetCategoryId(3);
         saveInquiry.SetInquiryName("Test");
@@ -74,7 +74,13 @@ public class InquiryController {
     @GetMapping("/getInquiryById/{id}")
     public Inquiry getInquiryById(@PathVariable int id) {
         try {
-            return inquiryService.getInquiryById(id);
+            Inquiry response = inquiryService.getInquiryById(id);
+            if(response == null) {
+                throw new RequestException("Ne postoji Inquiry sa proslijedjenim Id");
+            }
+            else {
+                return response;
+            }
         } catch (Exception e) {
             throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
         }
@@ -92,7 +98,13 @@ public class InquiryController {
     @GetMapping("/getCategories")
     public List<Category> getCatergories() {
         try {
-            return inquiryService.getCategories();
+            List<Category> response = inquiryService.getCategories();
+            if(response == null) {
+                throw new RequestException("Ne postoje kategorije");
+            }
+            else {
+                return response;
+            }
         } catch (Exception e) {
             throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
         }
@@ -101,16 +113,28 @@ public class InquiryController {
     @GetMapping("/getInquiryByCategory/{categoryId}")
     public List<Inquiry> getInquiryByCategoryId(@PathVariable int categoryId) {
         try {
-            return inquiryService.getInquiryByCategoryId(categoryId);
+            List<Inquiry> response = inquiryService.getInquiryByCategoryId(categoryId);
+            if(response == null) {
+                throw new RequestException("Ne postoji Inquiry sa proslijedjenom kategorijom");
+            }
+            else {
+                return response;
+            }
         } catch (Exception e) {
             throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
         }
     }
 
     @GetMapping("/getInquiryByName/{inquiryName}")
-    public List<Inquiry> getInquiryByCategoryId(@PathVariable String inquiryName) {
+    public List<Inquiry> getInquiryByNmae(@PathVariable String inquiryName) {
         try {
-            return inquiryService.getInquiryByName(inquiryName);
+            List<Inquiry> response = inquiryService.getInquiryByName(inquiryName);
+            if(response == null) {
+                throw new RequestException("Ne postoji Inquiry sa proslijedjenim imenom");
+            }
+            else {
+                return response;
+            }
         } catch (Exception e) {
             throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
         }
@@ -119,7 +143,13 @@ public class InquiryController {
     @GetMapping("/getInquiryByUserId/{userId}")
     public List<Inquiry> getInquiryByUserId(@PathVariable int userId) {
         try {
-            return inquiryService.getInquiryByUserId(userId);
+            List<Inquiry> response = inquiryService.getInquiryByUserId(userId);
+            if(response == null) {
+                throw new RequestException("Ne postoji Inquiry sa proslijedjenom user id");
+            }
+            else {
+                return response;
+            }
         } catch (Exception e) {
             throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
         }
