@@ -3,6 +3,8 @@ package com.example.microserviceinquiry;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.microserviceinquiry.Exception.SaveException;
 import com.example.microserviceinquiry.Exception.RequestException;
 import com.example.microserviceinquiry.Models.*;
@@ -33,7 +35,7 @@ public class InquiryController {
     }
 
     @PostMapping("/saveInquiry")
-    public ResponseEntity<Inquiry> saveInquiry(@RequestBody Inquiry inquiry) {
+    public ResponseEntity<Inquiry> saveInquiry(@Valid @RequestBody Inquiry inquiry) {
         int userId = restTemplate.getForObject("Http://user-microservice//user-microservice/getLogedUser", int.class);
         inquiry.SetUserId(userId);
         Inquiry saveInquiry = new Inquiry();// Hardcode podaci

@@ -65,10 +65,24 @@ class DemoApplicationTests {
 	}
 
 	@Test
-	void getInquiryByNameError2() throws Exception{
+	void getInquiryByName2() throws Exception{
 		mockMvc.perform(MockMvcRequestBuilders
 			.get("/getInquiryByName/sadfaf"))
 			.andExpect(status().isOk());
+	}
+
+	@Test
+	void getInquiryByCategoryId() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders
+			.get("/getInquiryByCategory/1"))
+			.andExpect(status().isOk());
+	}
+
+	@Test
+	void getInquiryByCategoryIdError() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders
+			.get("/getInquiryByCategory/"))
+			.andExpect(status().isNotFound());
 	}
 
 	private static String asJsonString(final Object obj) {
