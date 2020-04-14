@@ -50,7 +50,7 @@ public class quizConroller{
     //     }
     // }
 
-    @PostMapping("/quiz/{inquiryId}")
+    @PostMapping("/createQuiz/{inquiryId}")
     public String newQuiz(@PathVariable int inquiryId) {
         int inquirId = restTemplate.getForObject("http://inquiry-service/getInquiryId/" + inquiryId, int.class);
         int numberOfQuestion = restTemplate.getForObject("http://inquiry-service/getNumberOfQuestion/" + inquiryId, int.class);
@@ -67,7 +67,7 @@ public class quizConroller{
         return "Uspješno dodan.";
     }
     
-    @DeleteMapping("/quiz/{id}")
+    @DeleteMapping("/deleteQuiz/{id}")
     public String deleteQuiz(@PathVariable int id) { 
         try{
             service.deleteQuiz(id);
