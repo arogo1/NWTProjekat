@@ -33,15 +33,15 @@ public class UserService implements IUserService {
 	}
 	
 	@Override
-	public User findUserByUsername(String username){
+	public boolean findUserByUsername(String username){
 		// TODO Auto-generated method stub
 		Iterable<User> allUsers = userRepository.findAll();
 		for (User usr : allUsers) {
 			if(usr.getUsername().contentEquals(username)) {
-				return usr;
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 
 

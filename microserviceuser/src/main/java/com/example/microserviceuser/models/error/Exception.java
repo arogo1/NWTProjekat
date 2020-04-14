@@ -7,7 +7,11 @@ public class Exception extends RuntimeException {
     private HttpStatus status;
     private String message;
     private String details;
-
+    
+    public Exception() {
+    	
+    }
+    
     public Exception (HttpStatus status, String message) {
         super();
         this.status = status;

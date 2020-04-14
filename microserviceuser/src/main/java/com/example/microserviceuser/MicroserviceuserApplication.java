@@ -63,7 +63,7 @@ public class MicroserviceuserApplication {
 	            //userRepository.save(user);
 	        	userService.saveUser(user);
 	            System.out.println("repository");
-	            System.out.println(userService.findUserById(1).get());
+	            System.out.println(userService.findUserById(1));
 	        } catch (Exception e) {
 	        	System.out.println("error");
 	            e.printStackTrace();

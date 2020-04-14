@@ -1,18 +1,15 @@
 package com.example.microserviceuser.models.error;
 
-public class ResourceNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class ResourceNotFoundException extends Exception {
 	
-
-    public ResourceNotFoundException() {
-        super();
-    }
-
-    public ResourceNotFoundException(String message) {
-        super(message);
-    }
-
-    public ResourceNotFoundException(String message, Throwable cause) {
-        super(message, cause);
+	public ResourceNotFoundException(String message) {
+		 super(HttpStatus.EXPECTATION_FAILED, message);
+	}
+	
+	public ResourceNotFoundException(int id) {
+        super(HttpStatus.NOT_FOUND,"Could not find quiz with ID = " + id + "!", "");
     }
     
 }

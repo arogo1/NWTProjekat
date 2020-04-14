@@ -40,21 +40,22 @@ public class UserController {
 	
     @GetMapping("/user/{id}")
     public User findById(@PathVariable("id") Integer id){
-    	if(userService.findUserById(id)==null)
-    		throw new ResourceNotFoundException("No user with this id found!");
+    	//System.out.println(userService.findUserById(id).isEmpty());
+    	if(userService.findUserById(id).isEmpty())
+    		throw new ResourceNotFoundException(id);
 		return userService.findUserById(id).get();	
     }
     
-   @GetMapping("/user/find/{username}")
+   /*@GetMapping("/user/find/{username}")
    public User findUserByUsername(@PathVariable("username") String username) {
 	   if(userService.findUserByUsername(username)==null)
 		   throw new ResourceNotFoundException("No user with this username found!");
 		return userService.findUserByUsername(username);
-   }
+   }*/
     
     @PostMapping("/user")
     public User newUser(User newUser) {
-    	if(userService.findUserByUsername(newUser.getUsername())!=null)
+    	if(userService.findUserByUsername(newUser.getUsername()))
     		throw new ResourceNotFoundException("Already exists user with this username");
    
 		PasswordValidator passwordValidator = new PasswordValidator();
@@ -77,13 +78,30 @@ public class UserController {
     
     @PutMapping("/user/{id}")
     public User updateUser(@RequestBody User newUser, @PathVariable("id") Integer id) {
-    	if(userService.findUserById(id)==null) {
-    		if(userService.findUserByUsername(newUser.getUsername())==null)
-    			return userService.saveUser(newUser);
+    	PasswordValidator passwordValidator = new PasswordValidator();
+		Boolean response = passwordValidator.validate(newUser.getPassword());
+		System.out.println(userService.findUserById(id).isEmpty());
+    	if(userService.findUserById(id).isEmpty()) {
+    		if(!userService.findUserByUsername(newUser.getUsername())) {
+    			if(response)
+    				return userService.saveUser(newUser);
+    			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");
+    		}
     		throw new ResourceNotFoundException("Already exists user with this username!");
     	}
-    	if(userService.findUserByUsername(newUser.getUsername())==null)
-    		 return userService.updateUser(newUser, id);
+    	
+    	/*else if(!userService.findUserById(id).isEmpty() && userService.findUserByUsername(newUser.getUsername())) {
+    		if(response)
+				return userService.saveUser(newUser);
+			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");
+    	}*/
+    	
+    	else if(!userService.findUserByUsername(newUser.getUsername())) {
+    		if(response)
+    			return userService.updateUser(newUser, id);
+			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");
+    	}
+    		 
 		throw new ResourceNotFoundException("Cannot update because already exists user with this username!");
        
     }
