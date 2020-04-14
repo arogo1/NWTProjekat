@@ -77,7 +77,7 @@ import org.springframework.web.client.RestTemplate;
           
      }
     
-     @DeleteMapping("/doneQuiz/{id}")
+     @DeleteMapping("/deleteDoneQuiz/{id}")
      public String deleteQuiz(@PathVariable("id") int id){ 
          try{
             service.deleteDoneQuiz(id);
