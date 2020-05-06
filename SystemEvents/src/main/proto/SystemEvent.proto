@@ -16,5 +16,5 @@ service SystemEventService{
 message SystemEventMessage {
     string timestamp = 1;
     string serviceName = 2;
-    string user;
+    string user = 3;
 }
