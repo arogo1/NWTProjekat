@@ -35,9 +35,9 @@ public class InquiryController {
     }
 
     @PostMapping("/saveInquiry")
-    public ResponseEntity<Inquiry> saveInquiry(@Valid @RequestBody Inquiry inquiry) {
-        int userId = restTemplate.getForObject("Http://user-microservice//user-microservice/getLogedUser", int.class);
-        inquiry.SetUserId(userId);
+    public ResponseEntity<Inquiry> saveInquiry(@RequestBody Inquiry inquiry) {
+        //int userId = restTemplate.getForObject("Http://user-microservice//user-microservice/getLogedUser", int.class);
+        //inquiry.SetUserId(userId);
         Inquiry saveInquiry = new Inquiry();// Hardcode podaci
         saveInquiry.SetCategoryId(3);
         saveInquiry.SetInquiryName("Test");
