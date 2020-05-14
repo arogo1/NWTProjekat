@@ -11,7 +11,6 @@ import com.google.errorprone.annotations.Var;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @NoArgsConstructor
-
 public class CustomInterceptor extends HandlerInterceptorAdapter {
     GrpcQuizServiceClient grpcQuizServiceClient;
     public CustomInterceptor(GrpcQuizServiceClient client){
