@@ -752,6 +752,10 @@ private static final long serialVersionUID = 0L;
       return super.mergeUnknownFields(unknownFields);
     }
 
+	public Object setActionResult(String string) {
+		return null;
+	}
+
 
     // @@protoc_insertion_point(builder_scope:com.exapmle.grpc.systemevent.SystemEventMessage)
   }
