@@ -10,10 +10,10 @@ public class ProducerService {
     @Autowired
     private AmqpTemplate rabbitTemplate;
 
-    @Value("${rmq.exchange}")
+    @Value("${rabbitmq.exchange}")
     String exchange;
 
-    @Value("${rmq.routingKey}")
+    @Value("${rabbitmq.routingKey}")
     private String routingKey;
 
     public void send(Integer userId) {

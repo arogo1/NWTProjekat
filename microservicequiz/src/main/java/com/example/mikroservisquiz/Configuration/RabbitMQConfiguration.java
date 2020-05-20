@@ -15,13 +15,13 @@ import org.springframework.amqp.core.BindingBuilder;
 @Configuration
 public class RabbitMQConfiguration {
 
-    @Value("${rmq.queue}")
+    @Value("${rabbitmq.queue}")
     String queueName;
 
-    @Value("${rmq.exchange}")
+    @Value("${rabbitmq.exchange}")
     String exchange;
 
-    @Value("${rmq.routingKey}")
+    @Value("${rabbitmq.routingKey}")
     private String routingKey;
 
     @Bean
