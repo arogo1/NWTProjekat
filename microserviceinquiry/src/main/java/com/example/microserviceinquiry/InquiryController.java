@@ -10,6 +10,7 @@ import com.example.microserviceinquiry.Grpc.GrpcInquiryServiceClient;
 import com.example.microserviceinquiry.Exception.RequestException;
 import com.example.microserviceinquiry.Models.*;
 import com.example.microserviceinquiry.Service.IInquiryService;
+import com.example.microserviceinquiry.Service.ProducerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,9 @@ public class InquiryController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    ProducerService producerService;
+
     // @Autowired
     // GrpcInquiryServiceClient client;
 
@@ -42,6 +46,7 @@ public class InquiryController {
     public ResponseEntity<Inquiry> saveInquiry(@RequestBody Inquiry inquiry) {
         //int userId = restTemplate.getForObject("Http://user-microservice//user-microservice/getLogedUser", int.class);
         //inquiry.SetUserId(userId);
+        int userId = 2;
         Inquiry saveInquiry = new Inquiry();// Hardcode podaci
         saveInquiry.SetCategoryId(3);
         saveInquiry.SetInquiryName("Test");
@@ -67,6 +72,7 @@ public class InquiryController {
 
         try {
             inquiryService.save(saveInquiry);
+            producerService.send(userId);
             // Metodi save ce se proslijediti parametar inquiry,
             // na frontendu je zamisljeno da se podatak pripremi backendu
             // inquiryService.save(inquiry);
