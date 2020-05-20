@@ -5,38 +5,38 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.microserviceuser.models.User;
+import com.example.microserviceuser.models.UserModel;
 import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
 
 @Service
-public class UserService implements IUserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
-	@Override
-	public List<User> findAllUsers() {
+	public List<UserModel> findAllUsers() {
 		// TODO Auto-generated method stub
-		List<User> users = new ArrayList<User>();
-        Iterable<User> response = userRepository.findAll();
+		List<UserModel> users = new ArrayList<UserModel>();
+        Iterable<UserModel> response = userRepository.findAll();
         response.forEach(users::add);
         return users;
 	}
 
-	@Override
-	public Optional<User> findUserById(Integer id){
+	public Optional<UserModel> findUserById(Integer id){
 		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}
 	
-	@Override
 	public boolean findUserByUsername(String username){
 		// TODO Auto-generated method stub
-		Iterable<User> allUsers = userRepository.findAll();
-		for (User usr : allUsers) {
+		Iterable<UserModel> allUsers = userRepository.findAll();
+		for (UserModel usr : allUsers) {
 			if(usr.getUsername().contentEquals(username)) {
 				return true;
 			}
@@ -44,21 +44,17 @@ public class UserService implements IUserService {
 		return false;
 	}
 
-
-	@Override
-	public User saveUser(User user){
+	public UserModel saveUser(UserModel user){
 		// TODO Auto-generated method stub	
 		return userRepository.save(user);
 	}
 
-	@Override
 	public void deleteUserById(Integer id){
 		// TODO Auto-generated method stub
 		userRepository.deleteById(id);
 	}
 
-	@Override
-	public User updateUser(User newUser, Integer id){
+	public UserModel updateUser(UserModel newUser, Integer id){
 		// TODO Auto-generated method stub
 		return userRepository.findById(id)
                 .map(user -> {
@@ -70,20 +66,19 @@ public class UserService implements IUserService {
                 }).orElseGet(()-> userRepository.save(newUser));
 	}
 
-	@Override
 	public void deleteAllUsers() {
 		// TODO Auto-generated method stub
 		userRepository.deleteAll();
 	}
 
-	@Override
-	public boolean login(User user) {
+	
+	public boolean login(UserModel user) {
 		// TODO Auto-generated method stub
-		Iterable<User> allUsers = userRepository.findAll();
-		Iterable<User> logedUsers = userRepository.findAll();
-		for (User usr : allUsers) {
+		Iterable<UserModel> allUsers = userRepository.findAll();
+		Iterable<UserModel> logedUsers = userRepository.findAll();
+		for (UserModel usr : allUsers) {
 			if(usr.getUsername().contentEquals(user.getUsername()) && usr.getPassword().contentEquals(user.getPassword())) {
-				for(User logedusr : logedUsers) {
+				for(UserModel logedusr : logedUsers) {
 					if(logedusr.getLoged()) 
 						return false;
 				}
@@ -95,11 +90,11 @@ public class UserService implements IUserService {
 		return false;
 	}
 
-	@Override
-	public boolean logout(User user) {
+
+	public boolean logout(UserModel user) {
 		// TODO Auto-generated method stub
-		Iterable<User> allUsers = userRepository.findAll();
-		for (User usr : allUsers) {
+		Iterable<UserModel> allUsers = userRepository.findAll();
+		for (UserModel usr : allUsers) {
 			if(usr.getUsername().contentEquals(user.getUsername()) && usr.getPassword().contentEquals(user.getPassword())) {
 				usr.setLoged(false);
 				userRepository.save(usr);
@@ -108,6 +103,12 @@ public class UserService implements IUserService {
 		}
 		return false;
 		
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

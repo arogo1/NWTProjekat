@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.microserviceuser.validation.PasswordValidator;
-import com.example.microserviceuser.models.User;
+import com.example.microserviceuser.models.UserModel;
 import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
 import com.example.microserviceuser.service.IUserService;
@@ -31,7 +31,7 @@ public class UserController {
 	private RestTemplate restTemplate;
 	
 	@GetMapping("/users")
-	public List<User>getUsers() {
+	public List<UserModel>getUsers() {
 			if(userService.findAllUsers().toString()=="[]")
 				throw new ResourceNotFoundException("No users found!");
 		return userService.findAllUsers();
@@ -39,7 +39,7 @@ public class UserController {
     }
 	
     @GetMapping("/user/{id}")
-    public User findById(@PathVariable("id") Integer id){
+    public UserModel findById(@PathVariable("id") Integer id){
     	//System.out.println(userService.findUserById(id).isEmpty());
     	if(userService.findUserById(id).isEmpty())
     		throw new ResourceNotFoundException(id);
@@ -54,7 +54,7 @@ public class UserController {
    }*/
     
     @PostMapping("/user")
-    public User newUser(User newUser) {
+    public UserModel newUser(UserModel newUser) {
     	if(userService.findUserByUsername(newUser.getUsername()))
     		throw new ResourceNotFoundException("Already exists user with this username");
    
@@ -77,7 +77,7 @@ public class UserController {
     }
     
     @PutMapping("/user/{id}")
-    public User updateUser(@RequestBody User newUser, @PathVariable("id") Integer id) {
+    public UserModel updateUser(@RequestBody UserModel newUser, @PathVariable("id") Integer id) {
     	PasswordValidator passwordValidator = new PasswordValidator();
 		Boolean response = passwordValidator.validate(newUser.getPassword());
 		System.out.println(userService.findUserById(id).isEmpty());
@@ -107,7 +107,7 @@ public class UserController {
     }
     
     @PostMapping("/user/login")
-    public String login(User user) {
+    public String login(UserModel user) {
     	if(userService.login(user)) 
     		return "User loged in";
     	return "Something went wrong";
@@ -115,7 +115,7 @@ public class UserController {
     }
     
     @PostMapping("/user/logout")
-    public String logout(User user) {
+    public String logout(UserModel user) {
     	if(userService.logout(user)) 
     		return "User loged out";
     	return "Something went wrong";
@@ -123,8 +123,8 @@ public class UserController {
     
     @GetMapping("/user-microservice/getLogedUser")
     public Integer getLogedUser() {
-    	Iterable<User> allUsers = userService.findAllUsers();
-		for (User usr : allUsers) {
+    	Iterable<UserModel> allUsers = userService.findAllUsers();
+		for (UserModel usr : allUsers) {
 			if(usr.getLoged()) {
 				return usr.getUserId();
 			}

@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.mikroservisquiz.conroller.quiz.exception.postException;
 import com.example.mikroservisquiz.conroller.quiz.exception.quizNotFoundException;
 import com.example.mikroservisquiz.models.Quiz;
+import com.example.mikroservisquiz.servisi.ProducerService;
 import com.example.mikroservisquiz.servisi.quizService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.PutMapping;
-// import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,6 +24,9 @@ public class quizConroller{
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    ProducerService producer;
 
     @GetMapping("/quizes")
     public List<Quiz>getQuizes(){
@@ -41,14 +43,6 @@ public class quizConroller{
             throw new quizNotFoundException(id);
         }
     }
-    // @GetMapping("/quizByResult/{result}")
-    // public List<Quiz> findByResult(@PathVariable("result") int result){
-    //     try{
-    //         return service.getAllByResult(result);
-    //     }catch(Exception ex){
-    //         throw new quizNotFoundException(result);
-    //     }
-    // }
 
     @PostMapping("/createQuiz/{inquiryId}")
     public String newQuiz(@PathVariable int inquiryId) {
@@ -71,10 +65,13 @@ public class quizConroller{
     public String deleteQuiz(@PathVariable int id) { 
         try{
             service.deleteQuiz(id);
+            //rabbit
+            producer.send(id);
             return "Uspješno obrisan.";
         }catch(Exception ex){
             throw new postException("Nije moguće izvršiti ovu operaciju.");
         }
+        
     }
 
     // @PutMapping("/quiz/{id}")
