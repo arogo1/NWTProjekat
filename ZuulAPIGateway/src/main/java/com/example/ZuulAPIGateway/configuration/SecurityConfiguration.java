@@ -50,18 +50,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
 
-                .antMatchers(HttpMethod.POST, "/login", "/users", "/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/login", "/users", "/logout").permitAll()
 
                 .antMatchers(HttpMethod.GET, "/",
-                        "/celebs/**", "/jobs/**", "/celebjobs/**", "/moviecelebs/**",
-                        "/movies/**", "/genreMovies/**", "/genres/**",
-                        "/comments/**", "/reviews/**", "/watchlists/**", "/recensions/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/users/protected/**").hasAnyRole(ADMIN, USER)
-                .antMatchers(HttpMethod.GET,  "/notifications/**").hasAnyRole(ADMIN, USER)
-                .antMatchers(HttpMethod.GET, "/subscriptions/**").hasAnyRole(ADMIN, USER)
+                        "/doneQuizes/**", "/getdoneQuizByUserId/**", "/quizes/**",
+                        "/getCategories/**", "/getInquiryId/**","/user-microservice/getLogedUser/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/user-microservice/getLogedUser/**").hasAnyRole(ADMIN, USER)
                 .antMatchers(HttpMethod.GET, "/user/**").hasAnyRole(ADMIN, USER)
-                .antMatchers(HttpMethod.POST, "/users/**").hasAnyRole(ADMIN, USER)
-                .antMatchers("/comments/**", "/reviews/**", "/watchlists/**", "/recensions/**").hasAnyRole(ADMIN, USER)
+                .antMatchers(HttpMethod.POST, "/createDoneQuiz/**").hasAnyRole(ADMIN, USER)
                 .antMatchers("/**").hasRole(ADMIN)
 
                 .anyRequest().authenticated();
