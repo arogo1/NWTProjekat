@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.example.microserviceuser.models.User;
+import com.example.microserviceuser.models.UserModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.http.MediaType;
@@ -56,7 +56,7 @@ class MicroserviceuserApplicationTests {
 	void saveUserTest() throws Exception{
 		ObjectMapper om = new ObjectMapper();
 	    this.mvc.perform(post("/user")
-	    	.content(om.writeValueAsString(new User("noviTest","Kolikomilki12.")))
+	    	.content(om.writeValueAsString(new UserModel("noviTest","Kolikomilki12.")))
 			.contentType(MediaType.APPLICATION_JSON)
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk());
@@ -107,7 +107,7 @@ class MicroserviceuserApplicationTests {
 	public void updateUserTest() throws Exception {
 		ObjectMapper om = new ObjectMapper();
 	    this.mvc.perform(put("/user/15")
-	    .content(om.writeValueAsString(new User(15,"slekic1updateTest","Kolikomilki12.")))
+	    .content(om.writeValueAsString(new UserModel(15,"slekic1updateTest","Kolikomilki12.")))
 	    .contentType(MediaType.APPLICATION_JSON)
 	    .accept(MediaType.APPLICATION_JSON))
 	    .andDo(print())

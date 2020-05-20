@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="User")
-public class User {
+public class UserModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,16 +32,16 @@ public class User {
 	@Column(name="Loged")
 	private boolean loged;
 
-	public User() {
+	public UserModel() {
 	}
 
-	public User(String username, String password) {
+	public UserModel(String username, String password) {
 		this.username = username;
 		this.password = password;
 		this.loged = false;
 	}
 	
-	public User(Integer id, String username, String password) {
+	public UserModel(Integer id, String username, String password) {
 		this.userId = id;
 		this.username = username;
 		this.password = password;
