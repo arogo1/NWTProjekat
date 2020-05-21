@@ -19,6 +19,7 @@ import com.example.microserviceuser.models.UserModel;
 import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
 import com.example.microserviceuser.service.IUserService;
+import com.example.microserviceuser.service.ProducerService;
 import com.example.microserviceuser.service.UserService;
 
 @RestController
@@ -29,6 +30,9 @@ public class UserController {
 	
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+    ProducerService producerService;
 	
 	@GetMapping("/users")
 	public List<UserModel>getUsers() {
@@ -69,6 +73,7 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable Integer id) {
 		userService.deleteUserById(id);
+		producerService.send(id);
     }
     
     @DeleteMapping("/deleteAll")
