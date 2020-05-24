@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionGroup, Inquiry } from '../Models/inquiry';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-inquiry',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InquiryComponent implements OnInit {
 
-  constructor() { }
+  public inquiry: Inquiry;
+  y = ["j", "d", "t"];
+  constructor(
+    //private http: HttpClient
+    ) {
+    this.inquiry = new Inquiry();
+  }
 
   ngOnInit() {
   }
 
+  addQuestionGroup(){
+    this.inquiry.questionGroups.push(new QuestionGroup());
+  }
+
+  save(){
+    //return this.http.post("localhost:8000/saveInquiry", this.inquiry);
+  }
 }

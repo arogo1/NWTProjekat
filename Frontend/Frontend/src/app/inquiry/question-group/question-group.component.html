@@ -1,0 +1,12 @@
+<form class="border border-dark rounded" style="margin: 1%;">
+    <div class="form-row" style="margin: 1%;">
+        <label>Question group name</label>
+        <input type="text" class="form-control" style="width: 30%; margin-left: 1%;">
+    </div>
+    <div>
+        <section *ngFor="let x of y">
+            <app-question></app-question>
+        </section>
+    </div>
+    <button class="btn btn-primary" style="margin: 1%;">Add question</button>
+</form>
