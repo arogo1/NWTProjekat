@@ -15,7 +15,7 @@ import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -105,11 +105,7 @@ public class UserService implements UserDetailsService {
 		
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	
 }

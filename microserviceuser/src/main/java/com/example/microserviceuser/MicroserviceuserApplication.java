@@ -49,7 +49,7 @@ public class MicroserviceuserApplication {
 		SpringApplication.run(MicroserviceuserApplication.class, args);
 	}
 	
-	    @Autowired
+	   /* @Autowired
 	    IUserService userService;
 
 	   @PostMapping(value = "/saveUser")
