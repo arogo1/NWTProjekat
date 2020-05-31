@@ -11,6 +11,9 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { QuestionGroupComponent } from './inquiry/question-group/question-group.component';
 import { QuestionComponent } from './inquiry/question-group/question/question.component';
+import { ResultComponent } from './result/result.component';
+import { QuizService } from './shared/quiz.service';
+import { AuthGuard } from './auth/auth.guard';
 
 // const appRoutes: Routes = [
 //   { path: 'home-component', component: HomeComponent }
@@ -25,7 +28,8 @@ import { QuestionComponent } from './inquiry/question-group/question/question.co
     HomeComponent,
     HeaderComponent,
     QuestionGroupComponent,
-    QuestionComponent
+    QuestionComponent,
+    ResultComponent
   ],
    imports: [
   //   RouterModule.forRoot(
@@ -35,7 +39,7 @@ import { QuestionComponent } from './inquiry/question-group/question/question.co
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [QuizService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
