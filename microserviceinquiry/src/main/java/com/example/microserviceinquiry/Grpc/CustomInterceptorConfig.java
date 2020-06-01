@@ -1,18 +1,18 @@
-package com.example.microserviceinquiry.Grpc;
+// package com.example.microserviceinquiry.Grpc;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+// import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
-public class CustomInterceptorConfig implements WebMvcConfigurer {
+// @Configuration
+// public class CustomInterceptorConfig implements WebMvcConfigurer {
     
-    @Autowired
-    GrpcInquiryServiceClient client;
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new CustomInterceptor(client));
+//     @Autowired
+//     GrpcInquiryServiceClient client;
+//     @Override
+//     public void addInterceptors(InterceptorRegistry registry) {
+//         registry.addInterceptor(new CustomInterceptor(client));
 
-    }
-}
+//     }
+// }

@@ -13,11 +13,13 @@ export class QuizService {
   qnProgress: number;
   correctAnswerCount: number = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
+  displayTimeElapsed() {
+    return Math.floor(this.seconds / 3600) + ':' + Math.floor(this.seconds / 60) + ':' + Math.floor(this.seconds % 60);
+  }
 
-  // displayTimeElapsed() {
-  //   return Math.floor(this.seconds / 3600) + ':' + Math.floor(this.seconds / 60) + ':' + Math.floor(this.seconds % 60);
-  // }
+  // private http: HttpClient
+  
   // //provjeri na back ima li ovo
   // getQuestions() {
   //   return this.http.get(this.rootUrl + '/api/Questions');

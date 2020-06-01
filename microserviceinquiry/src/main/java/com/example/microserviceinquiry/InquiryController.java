@@ -6,7 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.example.microserviceinquiry.Exception.SaveException;
-import com.example.microserviceinquiry.Grpc.GrpcInquiryServiceClient;
+// import com.example.microserviceinquiry.Grpc.GrpcInquiryServiceClient;
 import com.example.microserviceinquiry.Exception.RequestException;
 import com.example.microserviceinquiry.Models.*;
 import com.example.microserviceinquiry.Service.IInquiryService;

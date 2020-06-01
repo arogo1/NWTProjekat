@@ -14,6 +14,7 @@ import { QuestionComponent } from './inquiry/question-group/question/question.co
 import { ResultComponent } from './result/result.component';
 import { QuizService } from './shared/quiz.service';
 import { AuthGuard } from './auth/auth.guard';
+import { StartQuizComponent } from './start-quiz/start-quiz.component';
 
 // const appRoutes: Routes = [
 //   { path: 'home-component', component: HomeComponent }
@@ -29,7 +30,8 @@ import { AuthGuard } from './auth/auth.guard';
     HeaderComponent,
     QuestionGroupComponent,
     QuestionComponent,
-    ResultComponent
+    ResultComponent,
+    StartQuizComponent
   ],
    imports: [
   //   RouterModule.forRoot(

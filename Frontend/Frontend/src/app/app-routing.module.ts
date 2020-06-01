@@ -7,6 +7,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import { ResultComponent } from './result/result.component';
 import { from } from 'rxjs';
 import { AuthGuard } from './auth/auth.guard';
+import { StartQuizComponent } from './start-quiz/start-quiz.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'create-inquiry', component: InquiryComponent},
   { path: 'quiz', component: QuizComponent, canActivate : [AuthGuard]},
   { path: 'result', component: ResultComponent, canActivate : [AuthGuard]},
-  {path:'',redirectTo:'/login',pathMatch:'full'}
+  {path:'',redirectTo:'/login',pathMatch:'full'},
+  { path: 'start-quiz', component: StartQuizComponent}
 ];
 
 @NgModule({
