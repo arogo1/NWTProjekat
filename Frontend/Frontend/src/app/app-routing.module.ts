@@ -12,14 +12,14 @@ import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
-  { path: 'home-component', component: HomeComponent },
-  { path: '', component: LoginComponent},
+  { path: 'home-component', component: HomeComponent /*, canActivate:[AuthGuard] */},
+  { path: 'login', component: LoginComponent},
   { path: 'create-inquiry', component: InquiryComponent},
   { path: 'quiz', component: QuizComponent, canActivate : [AuthGuard]},
   { path: 'result', component: ResultComponent, canActivate : [AuthGuard]},
   {path:'',redirectTo:'/login',pathMatch:'full'},
   { path: 'start-quiz', component: StartQuizComponent},
-  { path: 'register-component', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({

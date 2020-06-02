@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from '../Models/user.model';
+import { UserService } from '../shared/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,19 +13,15 @@ export class LoginComponent implements OnInit {
 
   user: User
 
-  constructor() { }
+  constructor(private userService: UserService, private router : Router) { }
 
   ngOnInit() {
-    this.resetForm();
   }
 
-  resetForm(form? : NgForm) {
-    if(form!=null)
-    form.reset();
-    this.user = {
-      UserName: '',
-      Password: ''
-    }
+  onSubmit() {
+    this.userService.userAuthentication();
   }
+
+ 
 
 }

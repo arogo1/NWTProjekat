@@ -5,20 +5,21 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" #userRegistrationForm="ngForm" class="form"  (ngSubmit)="OnSubmit()">
+                        <form id="register-form" #userRegistrationForm="ngForm" class="form"  (ngSubmit)="OnSubmit()">
                             <h3 class="text-center text-info">Register</h3>
                             <div class="form-group">
-                                <label data-error="This is required field!" for="username" class="text-info">Username:</label><br>
+                                <label for="username" class="text-info">Username:</label><br>
                                 <input type="text" [(ngModel)]="user.UserName" name="UserName" id="username" class="form-control validate" required #UserName="ngModel">
                                 <div [hidden]="!UserName.pristine" class="alert alert-danger"><label>Username is required!</label></div>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" #Password="ngModel" [(ngModel)]="user.Password" name="Password" id="password" class="form-control validate" required minlength="8">
+                                <input type="password" #Password="ngModel" [(ngModel)]="user.Password" name="Password" id="password" class="form-control validate" required minlength="8">
                                 <div [hidden]="!Password.pristine" class="alert alert-danger"><label>Password is required! Minimum 8 characters needed</label></div>
                             </div>
-                            <div class="form-group">
-                                <input [routerLink]="['/home-component']" type="submit" name="submit" class="btn btn-info btn-md" value="submit" [disabled]="!userRegistrationForm.valid">
+                            <div class="form-inline">
+                                <input [routerLink]="['/login']" type="button" name="submit" class="btn btn-info btn-md" value="Cancel">
+                                <input [routerLink]="['/home-component']" type="submit" name="submit" class="btn btn-info btn-md" value="Register" [disabled]="!userRegistrationForm.valid" style="margin-left: 68%;">
                             <!-- <div id="register-link" class="text-right"> -->
                             </div>
                         </form>
