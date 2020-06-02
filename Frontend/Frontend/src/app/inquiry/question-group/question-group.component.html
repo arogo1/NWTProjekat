@@ -1,12 +1,16 @@
 <form class="border border-dark rounded" style="margin: 1%;">
     <div class="form-row" style="margin: 1%;">
         <label>Question group name</label>
-        <input type="text" class="form-control" style="width: 30%; margin-left: 1%;">
+        <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" (keyup)="onKey($event)">
+    </div>
+    <div class="form-row" style="margin: 1%;">
+        <label>Question</label>
+        <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" #pitanje>
     </div>
     <div>
-        <section *ngFor="let x of y">
-            <app-question></app-question>
+        <section *ngFor="let x of createQuestion">
+            <app-question (childComponent)="fetchChild($event)"></app-question>
         </section>
     </div>
-    <button class="btn btn-primary" style="margin: 1%;">Add question</button>
+    <button class="btn btn-primary" style="margin: 1%;" (click)="addQuestion()">Add question</button>
 </form>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { QuestionGroup, Inquiry } from '../Models/inquiry';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-inquiry',
@@ -8,23 +9,27 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./inquiry.component.css']
 })
 export class InquiryComponent implements OnInit {
+  @ViewChild("inquiryName", null) inquiryName: ElementRef;
 
-  public inquiry: Inquiry;
-  y = ["j", "d", "t"];
-  constructor(
-    //private http: HttpClient
-    ) {
+  private inquiry: Inquiry;
+  private numberOfInquiry: Array<number> = [];
+  inquiryForm: FormGroup;
+  constructor() {
     this.inquiry = new Inquiry();
   }
 
   ngOnInit() {
+    this.inquiryForm = new FormGroup({
+      inquiryName: new FormControl()
+    });
   }
 
   addQuestionGroup(){
-    this.inquiry.questionGroups.push(new QuestionGroup());
+    this.numberOfInquiry.push(1);
   }
 
   save(){
-    //return this.http.post("localhost:8000/saveInquiry", this.inquiry);
+    this.inquiry.inquiryName = this.inquiryName.nativeElement.value
+    //return this.http.get("localhost:8000/");
   }
 }

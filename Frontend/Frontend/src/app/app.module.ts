@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InquiryComponent } from './inquiry/inquiry.component';
@@ -19,10 +17,8 @@ import { StartQuizComponent } from './start-quiz/start-quiz.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './shared/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-// const appRoutes: Routes = [
-//   { path: 'home-component', component: HomeComponent }
-// ];
 
 @NgModule({
   declarations: [
@@ -39,10 +35,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     RegisterComponent
   ],
    imports: [
-  //   RouterModule.forRoot(
-  //     appRoutes,
-  //     { enableTracing: true } // <-- debugging purposes only
-  //   ),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
