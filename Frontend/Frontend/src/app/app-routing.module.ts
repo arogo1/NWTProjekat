@@ -8,6 +8,7 @@ import { ResultComponent } from './result/result.component';
 import { from } from 'rxjs';
 import { AuthGuard } from './auth/auth.guard';
 import { StartQuizComponent } from './start-quiz/start-quiz.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'quiz', component: QuizComponent, canActivate : [AuthGuard]},
   { path: 'result', component: ResultComponent, canActivate : [AuthGuard]},
   {path:'',redirectTo:'/login',pathMatch:'full'},
-  { path: 'start-quiz', component: StartQuizComponent}
+  { path: 'start-quiz', component: StartQuizComponent},
+  { path: 'register-component', component: RegisterComponent}
 ];
 
 @NgModule({
