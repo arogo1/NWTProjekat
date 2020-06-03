@@ -52,7 +52,7 @@ public class Quiz {
     this.InquiryID = inquiryId;
   }
 
-  public int getResul() {
+  public int getResult() {
     return Result;
   }
 
@@ -60,12 +60,12 @@ public class Quiz {
     this.Result = result;
   }
 
-  public int getNumberOfAnswers() {
+  public int getNumberOfAnswer() {
     return NumberOfAnswer;
   }
 
-  public void SetNumOfAns(int num) {
-    this.NumberOfAnswer = num;
+  public void setNumberOfAnswer(int numberOfAnswer) {
+    NumberOfAnswer = numberOfAnswer;
   }
 
   @Override

@@ -45,31 +45,4 @@ public class DemoApplication {
 	@Autowired
 	doneQuizRepository doneQuizRepository;
 
-	@RequestMapping(value="/saveQuiz")
-	public String saveInquiry(Quiz quiz) {
-		quiz.SetInquiryId(1);
-		quiz.SetResult(40);
-		quiz.SetNumOfAns(10);
-	try {
-		repository.save(quiz);
-	} catch (Exception e) {
-		e.printStackTrace();
-		return "error " + e;
-	}
-	return "Uneseno u bazicu";
-	}
-
-	@RequestMapping(value="/saveDoneQuiz")
-	public String saveInquiry(DoneQuiz done_quiz) {
-		done_quiz.setUserId(4);
-		done_quiz.setQuizId(9);
-	try {
-		doneQuizRepository.save(done_quiz);
-	} catch (Exception e) {
-		e.printStackTrace();
-		return "error " + e;
-	}
-	return "Uneseno u bazicu1";
-	}
-
 }
