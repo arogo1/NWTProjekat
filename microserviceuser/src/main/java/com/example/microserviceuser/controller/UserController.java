@@ -3,6 +3,7 @@ package com.example.microserviceuser.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,23 +42,37 @@ public class UserController {
     }
 	
     @GetMapping("/user/{id}")
+<<<<<<< Updated upstream
     public User findById(@PathVariable("id") Integer id){
     	System.out.println(userService.findUserById(id).isEmpty());
     	if(userService.findUserById(id).isEmpty())
     		throw new ResourceNotFoundException(id);
+=======
+    public UserModel findById(@PathVariable("id") Integer id){
+    	//System.out.println(userService.findUserById(id).isEmpty());
+    	if(userService.findUserById(id).isEmpty()) {
+			throw new ResourceNotFoundException(id);
+		}
+>>>>>>> Stashed changes
 		return userService.findUserById(id).get();	
     }
     
-   /*@GetMapping("/user/find/{username}")
-   public User findUserByUsername(@PathVariable("username") String username) {
-	   if(userService.findUserByUsername(username)==null)
-		   throw new ResourceNotFoundException("No user with this username found!");
-		return userService.findUserByUsername(username);
-   }*/
+   @GetMapping("/user/find/{username}")
+   public UserModel findUserByUsername(@PathVariable("username") String username) {
+		var aa = userService.findUserByUsername(username);
+	   if(aa.isEmpty())
+	   		throw new ResourceNotFoundException("No user with this username found!");
+		return aa.orElse(null);
+   }
     
     @PostMapping("/user")
+<<<<<<< Updated upstream
     public User newUser(User newUser) {
     	if(userService.findUserByUsername(newUser.getUsername()))
+=======
+    public UserModel newUser(UserModel newUser) {
+    	if( userService.findUserByUsername(newUser.getUsername()).isEmpty())
+>>>>>>> Stashed changes
     		throw new ResourceNotFoundException("Already exists user with this username");
    
 		PasswordValidator passwordValidator = new PasswordValidator();
@@ -84,7 +99,7 @@ public class UserController {
 		Boolean response = passwordValidator.validate(newUser.getPassword());
 		System.out.println(userService.findUserById(id).isEmpty());
     	if(userService.findUserById(id).isEmpty()) {
-    		if(!userService.findUserByUsername(newUser.getUsername())) {
+    		if(userService.findUserByUsername(newUser.getUsername()).isEmpty()) {
     			if(response)
     				return userService.saveUser(newUser);
     			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");
@@ -98,7 +113,7 @@ public class UserController {
 			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");
     	}*/
     	
-    	else if(!userService.findUserByUsername(newUser.getUsername())) {
+    	else if(userService.findUserByUsername(newUser.getUsername()).isEmpty()) {
     		if(response)
     			return userService.updateUser(newUser, id);
 			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");

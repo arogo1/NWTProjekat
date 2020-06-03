@@ -13,7 +13,7 @@ public interface IUserService {
 	
 	public Optional<User> findUserById(Integer id);
 	
-	public boolean findUserByUsername(String username);
+	public Optional<UserModel> findUserByUsername(String username);
 
 	public void deleteUserById(Integer id);
 	

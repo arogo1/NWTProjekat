@@ -1,13 +1,13 @@
-package com.example.mikroservisquiz.interceptor;
+package com.example.microserviceinquiry.interceptor;
 
-import com.example.mikroservisquiz.GrpcClient;
+import com.example.microserviceinquiry.GrpcClient;
 import com.google.protobuf.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import com.example.mikroservisquiz.grpc.Example;
+import com.example.microserviceinquiry.grpc.Example;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Instant;

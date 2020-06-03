@@ -20,6 +20,9 @@ public class ConnectionConfig {
             Properties properties = new Properties();
 
             properties.load(fis);
+            System.out.println(properties.get(PREFIX + "url"));
+            System.out.println(properties.get(PREFIX + "username"));
+            System.out.println(properties.get(PREFIX + "password"));
             propsList.add(properties.get(PREFIX + "url").toString());
             propsList.add(properties.getProperty(PREFIX + "username").toString());
             propsList.add(properties.getProperty(PREFIX +  "password").toString());

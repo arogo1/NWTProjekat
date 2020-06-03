@@ -1,0 +1,8 @@
+grpc:
+  port: 8010 (1)
+eureka:
+  instance:
+    nonSecurePort: ${grpc.port} (2)
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/ (3)

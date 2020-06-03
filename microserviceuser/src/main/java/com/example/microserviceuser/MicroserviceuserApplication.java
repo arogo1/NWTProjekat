@@ -1,25 +1,17 @@
 package com.example.microserviceuser;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+<<<<<<< Updated upstream
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.boot.CommandLineRunner;
 
@@ -29,6 +21,8 @@ import com.example.microserviceuser.service.IUserService;
 import com.example.microserviceuser.service.UserService;
 
 import java.util.List;
+=======
+>>>>>>> Stashed changes
 
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})

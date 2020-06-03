@@ -1,4 +1,4 @@
-package com.example.mikroservisquiz;
+package com.example.microserviceinquiry;
 
 import com.google.protobuf.Timestamp;
 import com.netflix.appinfo.InstanceInfo;
@@ -7,18 +7,18 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import com.example.mikroservisquiz.grpc.actionGrpc;
+import com.example.microserviceinquiry.grpc.actionGrpc;
 
 @Configuration
 public class GrpcClient {
     @Autowired
     private EurekaClient client;
     public void invoke(Timestamp timestamp, String serviceName, Long userId,
-                       com.example.mikroservisquiz.grpc.Example.Request.ActionType actionType, String resourceName, Integer statusCode) {
+                       com.example.microserviceinquiry.grpc.Example.Request.ActionType actionType, String resourceName, Integer statusCode) {
         final InstanceInfo instanceInfo = client.getNextServerFromEureka("SystemEvent", false);
         ManagedChannel channel = ManagedChannelBuilder.forAddress(instanceInfo.getIPAddr(), instanceInfo.getPort()).usePlaintext().build();
-        com.example.mikroservisquiz.grpc.actionGrpc.actionBlockingStub actionBlockingStub = com.example.mikroservisquiz.grpc.actionGrpc.newBlockingStub(channel);
-        com.example.mikroservisquiz.grpc.Example.Request actionRequest = com.example.mikroservisquiz.grpc.Example.Request.newBuilder()
+        com.example.microserviceinquiry.grpc.actionGrpc.actionBlockingStub actionBlockingStub = com.example.microserviceinquiry.grpc.actionGrpc.newBlockingStub(channel);
+        com.example.microserviceinquiry.grpc.Example.Request actionRequest = com.example.microserviceinquiry.grpc.Example.Request.newBuilder()
                 .setTimestamp(timestamp)
                 .setServiceName(serviceName)
                 .setUserId(userId)
@@ -26,15 +26,15 @@ public class GrpcClient {
                 .setResourceName(resourceName)
                 .setStatusCode(statusCode)
                 .build();
-                com.example.mikroservisquiz.grpc.Example.APIResponse apiResponse = actionBlockingStub.logAction(actionRequest);
+                com.example.microserviceinquiry.grpc.Example.APIResponse apiResponse = actionBlockingStub.logAction(actionRequest);
     }
 
     public void checkConnectivity() throws Exception {
         try {
             final InstanceInfo instanceInfo = client.getNextServerFromEureka("SystemEvent", false);
             ManagedChannel channel = ManagedChannelBuilder.forAddress(instanceInfo.getIPAddr(), instanceInfo.getPort()).usePlaintext().build();
-            actionGrpc.actionBlockingStub actionBlockingStub = com.example.mikroservisquiz.grpc.actionGrpc.newBlockingStub(channel);
-            com.example.mikroservisquiz.grpc.Example.Empty empty = com.example.mikroservisquiz.grpc.Example.Empty.newBuilder().build();
+            actionGrpc.actionBlockingStub actionBlockingStub = com.example.microserviceinquiry.grpc.actionGrpc.newBlockingStub(channel);
+            com.example.microserviceinquiry.grpc.Example.Empty empty = com.example.microserviceinquiry.grpc.Example.Empty.newBuilder().build();
             actionBlockingStub.check(empty);
         }
         catch (Exception ex) {

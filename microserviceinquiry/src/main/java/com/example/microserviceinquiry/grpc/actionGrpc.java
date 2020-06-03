@@ -1,4 +1,4 @@
-package com.example.mikroservisquiz.grpc;
+package com.example.microserviceinquiry.grpc;
 
         import static io.grpc.MethodDescriptor.generateFullMethodName;
         import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
@@ -27,30 +27,30 @@ public final class actionGrpc {
     public static final String SERVICE_NAME = "action";
 
     // Static method descriptors that strictly reflect the proto.
-    private static volatile io.grpc.MethodDescriptor<com.example.mikroservisquiz.grpc.Example.Request,
-            com.example.mikroservisquiz.grpc.Example.APIResponse> getLogActionMethod;
+    private static volatile io.grpc.MethodDescriptor<com.example.microserviceinquiry.grpc.Example.Request,
+            com.example.microserviceinquiry.grpc.Example.APIResponse> getLogActionMethod;
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "logAction",
-            requestType = com.example.mikroservisquiz.grpc.Example.Request.class,
-            responseType = com.example.mikroservisquiz.grpc.Example.APIResponse.class,
+            requestType = com.example.microserviceinquiry.grpc.Example.Request.class,
+            responseType = com.example.microserviceinquiry.grpc.Example.APIResponse.class,
             methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-    public static io.grpc.MethodDescriptor<com.example.mikroservisquiz.grpc.Example.Request,
-            com.example.mikroservisquiz.grpc.Example.APIResponse> getLogActionMethod() {
-        io.grpc.MethodDescriptor<com.example.mikroservisquiz.grpc.Example.Request, com.example.mikroservisquiz.grpc.Example.APIResponse> getLogActionMethod;
+    public static io.grpc.MethodDescriptor<com.example.microserviceinquiry.grpc.Example.Request,
+            com.example.microserviceinquiry.grpc.Example.APIResponse> getLogActionMethod() {
+        io.grpc.MethodDescriptor<com.example.microserviceinquiry.grpc.Example.Request, com.example.microserviceinquiry.grpc.Example.APIResponse> getLogActionMethod;
         if ((getLogActionMethod = actionGrpc.getLogActionMethod) == null) {
             synchronized (actionGrpc.class) {
                 if ((getLogActionMethod = actionGrpc.getLogActionMethod) == null) {
                     actionGrpc.getLogActionMethod = getLogActionMethod =
-                            io.grpc.MethodDescriptor.<com.example.mikroservisquiz.grpc.Example.Request, com.example.mikroservisquiz.grpc.Example.APIResponse>newBuilder()
+                            io.grpc.MethodDescriptor.<com.example.microserviceinquiry.grpc.Example.Request, com.example.microserviceinquiry.grpc.Example.APIResponse>newBuilder()
                                     .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
                                     .setFullMethodName(generateFullMethodName(
                                             "action", "logAction"))
                                     .setSampledToLocalTracing(true)
                                     .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            com.example.mikroservisquiz.grpc.Example.Request.getDefaultInstance()))
+                                            com.example.microserviceinquiry.grpc.Example.Request.getDefaultInstance()))
                                     .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            com.example.mikroservisquiz.grpc.Example.APIResponse.getDefaultInstance()))
+                                            com.example.microserviceinquiry.grpc.Example.APIResponse.getDefaultInstance()))
                                     .setSchemaDescriptor(new actionMethodDescriptorSupplier("logAction"))
                                     .build();
                 }
@@ -59,30 +59,30 @@ public final class actionGrpc {
         return getLogActionMethod;
     }
 
-    private static volatile io.grpc.MethodDescriptor<com.example.mikroservisquiz.grpc.Example.Empty,
-            com.example.mikroservisquiz.grpc.Example.APIResponse> getCheckMethod;
+    private static volatile io.grpc.MethodDescriptor<com.example.microserviceinquiry.grpc.Example.Empty,
+            com.example.microserviceinquiry.grpc.Example.APIResponse> getCheckMethod;
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "check",
-            requestType = com.example.mikroservisquiz.grpc.Example.Empty.class,
-            responseType = com.example.mikroservisquiz.grpc.Example.APIResponse.class,
+            requestType = com.example.microserviceinquiry.grpc.Example.Empty.class,
+            responseType = com.example.microserviceinquiry.grpc.Example.APIResponse.class,
             methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-    public static io.grpc.MethodDescriptor<com.example.mikroservisquiz.grpc.Example.Empty,
-            com.example.mikroservisquiz.grpc.Example.APIResponse> getCheckMethod() {
-        io.grpc.MethodDescriptor<com.example.mikroservisquiz.grpc.Example.Empty, com.example.mikroservisquiz.grpc.Example.APIResponse> getCheckMethod;
+    public static io.grpc.MethodDescriptor<com.example.microserviceinquiry.grpc.Example.Empty,
+            com.example.microserviceinquiry.grpc.Example.APIResponse> getCheckMethod() {
+        io.grpc.MethodDescriptor<com.example.microserviceinquiry.grpc.Example.Empty, com.example.microserviceinquiry.grpc.Example.APIResponse> getCheckMethod;
         if ((getCheckMethod = actionGrpc.getCheckMethod) == null) {
             synchronized (actionGrpc.class) {
                 if ((getCheckMethod = actionGrpc.getCheckMethod) == null) {
                     actionGrpc.getCheckMethod = getCheckMethod =
-                            io.grpc.MethodDescriptor.<com.example.mikroservisquiz.grpc.Example.Empty, com.example.mikroservisquiz.grpc.Example.APIResponse>newBuilder()
+                            io.grpc.MethodDescriptor.<com.example.microserviceinquiry.grpc.Example.Empty, com.example.microserviceinquiry.grpc.Example.APIResponse>newBuilder()
                                     .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
                                     .setFullMethodName(generateFullMethodName(
                                             "action", "check"))
                                     .setSampledToLocalTracing(true)
                                     .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            com.example.mikroservisquiz.grpc.Example.Empty.getDefaultInstance()))
+                                            com.example.microserviceinquiry.grpc.Example.Empty.getDefaultInstance()))
                                     .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            com.example.mikroservisquiz.grpc.Example.APIResponse.getDefaultInstance()))
+                                            com.example.microserviceinquiry.grpc.Example.APIResponse.getDefaultInstance()))
                                     .setSchemaDescriptor(new actionMethodDescriptorSupplier("check"))
                                     .build();
                 }
@@ -120,15 +120,15 @@ public final class actionGrpc {
 
         /**
          */
-        public void logAction(com.example.mikroservisquiz.grpc.Example.Request request,
-                              io.grpc.stub.StreamObserver<com.example.mikroservisquiz.grpc.Example.APIResponse> responseObserver) {
+        public void logAction(com.example.microserviceinquiry.grpc.Example.Request request,
+                              io.grpc.stub.StreamObserver<com.example.microserviceinquiry.grpc.Example.APIResponse> responseObserver) {
             asyncUnimplementedUnaryCall(getLogActionMethod(), responseObserver);
         }
 
         /**
          */
-        public void check(com.example.mikroservisquiz.grpc.Example.Empty request,
-                          io.grpc.stub.StreamObserver<com.example.mikroservisquiz.grpc.Example.APIResponse> responseObserver) {
+        public void check(com.example.microserviceinquiry.grpc.Example.Empty request,
+                          io.grpc.stub.StreamObserver<com.example.microserviceinquiry.grpc.Example.APIResponse> responseObserver) {
             asyncUnimplementedUnaryCall(getCheckMethod(), responseObserver);
         }
 
@@ -138,15 +138,15 @@ public final class actionGrpc {
                             getLogActionMethod(),
                             asyncUnaryCall(
                                     new MethodHandlers<
-                                            com.example.mikroservisquiz.grpc.Example.Request,
-                                            com.example.mikroservisquiz.grpc.Example.APIResponse>(
+                                            com.example.microserviceinquiry.grpc.Example.Request,
+                                            com.example.microserviceinquiry.grpc.Example.APIResponse>(
                                             this, METHODID_LOG_ACTION)))
                     .addMethod(
                             getCheckMethod(),
                             asyncUnaryCall(
                                     new MethodHandlers<
-                                            com.example.mikroservisquiz.grpc.Example.Empty,
-                                            com.example.mikroservisquiz.grpc.Example.APIResponse>(
+                                            com.example.microserviceinquiry.grpc.Example.Empty,
+                                            com.example.microserviceinquiry.grpc.Example.APIResponse>(
                                             this, METHODID_CHECK)))
                     .build();
         }
@@ -172,16 +172,16 @@ public final class actionGrpc {
 
         /**
          */
-        public void logAction(com.example.mikroservisquiz.grpc.Example.Request request,
-                              io.grpc.stub.StreamObserver<com.example.mikroservisquiz.grpc.Example.APIResponse> responseObserver) {
+        public void logAction(com.example.microserviceinquiry.grpc.Example.Request request,
+                              io.grpc.stub.StreamObserver<com.example.microserviceinquiry.grpc.Example.APIResponse> responseObserver) {
             asyncUnaryCall(
                     getChannel().newCall(getLogActionMethod(), getCallOptions()), request, responseObserver);
         }
 
         /**
          */
-        public void check(com.example.mikroservisquiz.grpc.Example.Empty request,
-                          io.grpc.stub.StreamObserver<com.example.mikroservisquiz.grpc.Example.APIResponse> responseObserver) {
+        public void check(com.example.microserviceinquiry.grpc.Example.Empty request,
+                          io.grpc.stub.StreamObserver<com.example.microserviceinquiry.grpc.Example.APIResponse> responseObserver) {
             asyncUnaryCall(
                     getChannel().newCall(getCheckMethod(), getCallOptions()), request, responseObserver);
         }
@@ -207,14 +207,14 @@ public final class actionGrpc {
 
         /**
          */
-        public com.example.mikroservisquiz.grpc.Example.APIResponse logAction(com.example.mikroservisquiz.grpc.Example.Request request) {
+        public com.example.microserviceinquiry.grpc.Example.APIResponse logAction(com.example.microserviceinquiry.grpc.Example.Request request) {
             return blockingUnaryCall(
                     getChannel(), getLogActionMethod(), getCallOptions(), request);
         }
 
         /**
          */
-        public com.example.mikroservisquiz.grpc.Example.APIResponse check(com.example.mikroservisquiz.grpc.Example.Empty request) {
+        public com.example.microserviceinquiry.grpc.Example.APIResponse check(com.example.microserviceinquiry.grpc.Example.Empty request) {
             return blockingUnaryCall(
                     getChannel(), getCheckMethod(), getCallOptions(), request);
         }
@@ -240,16 +240,16 @@ public final class actionGrpc {
 
         /**
          */
-        public com.google.common.util.concurrent.ListenableFuture<com.example.mikroservisquiz.grpc.Example.APIResponse> logAction(
-                com.example.mikroservisquiz.grpc.Example.Request request) {
+        public com.google.common.util.concurrent.ListenableFuture<com.example.microserviceinquiry.grpc.Example.APIResponse> logAction(
+                com.example.microserviceinquiry.grpc.Example.Request request) {
             return futureUnaryCall(
                     getChannel().newCall(getLogActionMethod(), getCallOptions()), request);
         }
 
         /**
          */
-        public com.google.common.util.concurrent.ListenableFuture<com.example.mikroservisquiz.grpc.Example.APIResponse> check(
-                com.example.mikroservisquiz.grpc.Example.Empty request) {
+        public com.google.common.util.concurrent.ListenableFuture<com.example.microserviceinquiry.grpc.Example.APIResponse> check(
+                com.example.microserviceinquiry.grpc.Example.Empty request) {
             return futureUnaryCall(
                     getChannel().newCall(getCheckMethod(), getCallOptions()), request);
         }
@@ -276,12 +276,12 @@ public final class actionGrpc {
         public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
             switch (methodId) {
                 case METHODID_LOG_ACTION:
-                    serviceImpl.logAction((com.example.mikroservisquiz.grpc.Example.Request) request,
-                            (io.grpc.stub.StreamObserver<com.example.mikroservisquiz.grpc.Example.APIResponse>) responseObserver);
+                    serviceImpl.logAction((com.example.microserviceinquiry.grpc.Example.Request) request,
+                            (io.grpc.stub.StreamObserver<com.example.microserviceinquiry.grpc.Example.APIResponse>) responseObserver);
                     break;
                 case METHODID_CHECK:
-                    serviceImpl.check((com.example.mikroservisquiz.grpc.Example.Empty) request,
-                            (io.grpc.stub.StreamObserver<com.example.mikroservisquiz.grpc.Example.APIResponse>) responseObserver);
+                    serviceImpl.check((com.example.microserviceinquiry.grpc.Example.Empty) request,
+                            (io.grpc.stub.StreamObserver<com.example.microserviceinquiry.grpc.Example.APIResponse>) responseObserver);
                     break;
                 default:
                     throw new AssertionError();
@@ -305,7 +305,7 @@ public final class actionGrpc {
 
         @java.lang.Override
         public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-            return com.example.mikroservisquiz.grpc.Example.getDescriptor();
+            return com.example.microserviceinquiry.grpc.Example.getDescriptor();
         }
 
         @java.lang.Override

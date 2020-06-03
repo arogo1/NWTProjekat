@@ -23,16 +23,18 @@ public class SystemEventsService extends actionImplBase {
 
     @Override
     public void check(Example.Empty request, StreamObserver<APIResponse> responseObserver) {
-       APIResponse.Builder response = APIResponse.newBuilder();
+        System.out.println("234567898765432345678i987654323456789876543");
+
+        APIResponse.Builder response = APIResponse.newBuilder();
        response.setResponseMessage("Server running...").setResponseType(APIResponse.ResponseType.SUCCESS);
 
        responseObserver.onNext(response.build());
        responseObserver.onCompleted();
     }
-
     @Override
     public void logAction(Request request, StreamObserver<APIResponse> responseObserver) {
-        System.out.println("234567898765432345678i987654323456789876543");
+        System.out.println("234567898765432345678i987654323456789876543111111111111");
+
         APIResponse.Builder response = APIResponse.newBuilder();
         try {
             Event event = EventBuilder(request);
