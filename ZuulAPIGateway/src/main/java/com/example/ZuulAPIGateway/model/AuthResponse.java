@@ -1,4 +1,4 @@
-package com.example.ZuulAPIGateway.model;
+/*package com.example.ZuulAPIGateway.model;
 
 public class AuthResponse {
     private String JWT;
@@ -23,4 +23,4 @@ public class AuthResponse {
                 "JWT='" + JWT + '\'' +
                 '}';
     }
-}
+}*/

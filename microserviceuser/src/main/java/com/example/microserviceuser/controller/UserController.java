@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.microserviceuser.validation.PasswordValidator;
-import com.example.microserviceuser.models.UserModel;
+import com.example.microserviceuser.models.User;
 import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
 import com.example.microserviceuser.service.IUserService;
-import com.example.microserviceuser.service.ProducerService;
 import com.example.microserviceuser.service.UserService;
 
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController {
 	
@@ -31,11 +32,8 @@ public class UserController {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@Autowired
-    ProducerService producerService;
-	
 	@GetMapping("/users")
-	public List<UserModel>getUsers() {
+	public List<User>getUsers() {
 			if(userService.findAllUsers().toString()=="[]")
 				throw new ResourceNotFoundException("No users found!");
 		return userService.findAllUsers();
@@ -43,8 +41,8 @@ public class UserController {
     }
 	
     @GetMapping("/user/{id}")
-    public UserModel findById(@PathVariable("id") Integer id){
-    	//System.out.println(userService.findUserById(id).isEmpty());
+    public User findById(@PathVariable("id") Integer id){
+    	System.out.println(userService.findUserById(id).isEmpty());
     	if(userService.findUserById(id).isEmpty())
     		throw new ResourceNotFoundException(id);
 		return userService.findUserById(id).get();	
@@ -58,7 +56,7 @@ public class UserController {
    }*/
     
     @PostMapping("/user")
-    public UserModel newUser(UserModel newUser) {
+    public User newUser(User newUser) {
     	if(userService.findUserByUsername(newUser.getUsername()))
     		throw new ResourceNotFoundException("Already exists user with this username");
    
@@ -73,7 +71,6 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable Integer id) {
 		userService.deleteUserById(id);
-		producerService.send(id);
     }
     
     @DeleteMapping("/deleteAll")
@@ -82,7 +79,7 @@ public class UserController {
     }
     
     @PutMapping("/user/{id}")
-    public UserModel updateUser(@RequestBody UserModel newUser, @PathVariable("id") Integer id) {
+    public User updateUser(@RequestBody User newUser, @PathVariable("id") Integer id) {
     	PasswordValidator passwordValidator = new PasswordValidator();
 		Boolean response = passwordValidator.validate(newUser.getPassword());
 		System.out.println(userService.findUserById(id).isEmpty());
@@ -112,7 +109,7 @@ public class UserController {
     }
     
     @PostMapping("/user/login")
-    public String login(UserModel user) {
+    public String login(User user) {
     	if(userService.login(user)) 
     		return "User loged in";
     	return "Something went wrong";
@@ -120,7 +117,7 @@ public class UserController {
     }
     
     @PostMapping("/user/logout")
-    public String logout(UserModel user) {
+    public String logout(User user) {
     	if(userService.logout(user)) 
     		return "User loged out";
     	return "Something went wrong";
@@ -128,8 +125,8 @@ public class UserController {
     
     @GetMapping("/user-microservice/getLogedUser")
     public Integer getLogedUser() {
-    	Iterable<UserModel> allUsers = userService.findAllUsers();
-		for (UserModel usr : allUsers) {
+    	Iterable<User> allUsers = userService.findAllUsers();
+		for (User usr : allUsers) {
 			if(usr.getLoged()) {
 				return usr.getUserId();
 			}

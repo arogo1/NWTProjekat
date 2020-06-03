@@ -1,4 +1,4 @@
-package com.example.ZuulAPIGateway.service;
+/*package com.example.ZuulAPIGateway.service;
 
 import java.util.Optional;
 
@@ -22,4 +22,4 @@ public class CustomUserDetailService implements UserDetailsService {
         Optional<User> user = userRepository.findByUsername(username);
         return user.map(MyUserDetails::new).get();
     }
-}
+}*/

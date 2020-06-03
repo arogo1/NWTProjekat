@@ -1,4 +1,4 @@
-package com.example.ZuulAPIGateway.model;
+/*package com.example.ZuulAPIGateway.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -123,4 +123,4 @@ public class User  {
                 "User[id=%d, username='%s', password='%s', avatarUrl='%s', roleId=%d]",
                 id, username, password, avatarUrl, roleId);
     }
-}
+}*/

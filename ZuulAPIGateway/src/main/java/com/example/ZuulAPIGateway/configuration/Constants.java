@@ -1,4 +1,4 @@
-package com.example.ZuulAPIGateway.configuration;
+/*package com.example.ZuulAPIGateway.configuration;
 
 public final class Constants {
     public final class Claims {
@@ -8,4 +8,4 @@ public final class Constants {
         public static final String USER = "USER";
         public static final String ADMIN = "ADMIN";
     }
-}
+}*/

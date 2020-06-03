@@ -5,12 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.microserviceuser.models.UserModel;
+import com.example.microserviceuser.models.User;
 import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
 
@@ -20,23 +17,26 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
-	public List<UserModel> findAllUsers() {
+	@Override
+	public List<User> findAllUsers() {
 		// TODO Auto-generated method stub
-		List<UserModel> users = new ArrayList<UserModel>();
-        Iterable<UserModel> response = userRepository.findAll();
+		List<User> users = new ArrayList<User>();
+        Iterable<User> response = userRepository.findAll();
         response.forEach(users::add);
         return users;
 	}
 
-	public Optional<UserModel> findUserById(Integer id){
+	@Override
+	public Optional<User> findUserById(Integer id){
 		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}
 	
+	@Override
 	public boolean findUserByUsername(String username){
 		// TODO Auto-generated method stub
-		Iterable<UserModel> allUsers = userRepository.findAll();
-		for (UserModel usr : allUsers) {
+		Iterable<User> allUsers = userRepository.findAll();
+		for (User usr : allUsers) {
 			if(usr.getUsername().contentEquals(username)) {
 				return true;
 			}
@@ -44,17 +44,21 @@ public class UserService implements IUserService {
 		return false;
 	}
 
-	public UserModel saveUser(UserModel user){
+
+	@Override
+	public User saveUser(User user){
 		// TODO Auto-generated method stub	
 		return userRepository.save(user);
 	}
 
+	@Override
 	public void deleteUserById(Integer id){
 		// TODO Auto-generated method stub
 		userRepository.deleteById(id);
 	}
 
-	public UserModel updateUser(UserModel newUser, Integer id){
+	@Override
+	public User updateUser(User newUser, Integer id){
 		// TODO Auto-generated method stub
 		return userRepository.findById(id)
                 .map(user -> {
@@ -66,19 +70,20 @@ public class UserService implements IUserService {
                 }).orElseGet(()-> userRepository.save(newUser));
 	}
 
+	@Override
 	public void deleteAllUsers() {
 		// TODO Auto-generated method stub
 		userRepository.deleteAll();
 	}
 
-	
-	public boolean login(UserModel user) {
+	@Override
+	public boolean login(User user) {
 		// TODO Auto-generated method stub
-		Iterable<UserModel> allUsers = userRepository.findAll();
-		Iterable<UserModel> logedUsers = userRepository.findAll();
-		for (UserModel usr : allUsers) {
+		Iterable<User> allUsers = userRepository.findAll();
+		Iterable<User> logedUsers = userRepository.findAll();
+		for (User usr : allUsers) {
 			if(usr.getUsername().contentEquals(user.getUsername()) && usr.getPassword().contentEquals(user.getPassword())) {
-				for(UserModel logedusr : logedUsers) {
+				for(User logedusr : logedUsers) {
 					if(logedusr.getLoged()) 
 						return false;
 				}
@@ -90,11 +95,11 @@ public class UserService implements IUserService {
 		return false;
 	}
 
-
-	public boolean logout(UserModel user) {
+	@Override
+	public boolean logout(User user) {
 		// TODO Auto-generated method stub
-		Iterable<UserModel> allUsers = userRepository.findAll();
-		for (UserModel usr : allUsers) {
+		Iterable<User> allUsers = userRepository.findAll();
+		for (User usr : allUsers) {
 			if(usr.getUsername().contentEquals(user.getUsername()) && usr.getPassword().contentEquals(user.getPassword())) {
 				usr.setLoged(false);
 				userRepository.save(usr);
@@ -104,8 +109,6 @@ public class UserService implements IUserService {
 		return false;
 		
 	}
-
-	
 
 	
 }

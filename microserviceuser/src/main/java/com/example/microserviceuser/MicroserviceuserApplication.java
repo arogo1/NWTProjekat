@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.boot.CommandLineRunner;
 
-import com.example.microserviceuser.models.UserModel;
+import com.example.microserviceuser.models.User;
 import com.example.microserviceuser.repository.UserRepository;
 import com.example.microserviceuser.service.IUserService;
 import com.example.microserviceuser.service.UserService;
@@ -49,11 +49,11 @@ public class MicroserviceuserApplication {
 		SpringApplication.run(MicroserviceuserApplication.class, args);
 	}
 	
-	   /* @Autowired
+	    @Autowired
 	    IUserService userService;
 
 	   @PostMapping(value = "/saveUser")
-	    public String saveUser(@RequestBody UserModel user) {
+	    public String saveUser(@RequestBody User user) {
 	        System.out.println("Radi");
 	        user.setUsername("slekic");
 			user.setPassword("test123456");
