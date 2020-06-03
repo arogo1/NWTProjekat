@@ -1,4 +1,4 @@
-/*package com.example.ZuulAPIGateway.repository;
+package com.example.ZuulAPIGateway.repository;
 
 import java.util.Optional;
 
@@ -10,4 +10,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
     Optional<User> findByUsername(String username);
-}*/
+}

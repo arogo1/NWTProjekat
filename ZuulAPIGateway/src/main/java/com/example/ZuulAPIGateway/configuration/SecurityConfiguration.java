@@ -1,4 +1,4 @@
-/*package com.example.ZuulAPIGateway.configuration;
+package com.example.ZuulAPIGateway.configuration;
 
 import static com.example.ZuulAPIGateway.configuration.Constants.Roles.ADMIN;
 import static com.example.ZuulAPIGateway.configuration.Constants.Roles.USER;
@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**"); // Request type options should be allowed.
     }
 
-    /*@Override
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().disable().csrf().disable()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -76,4 +76,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
-}*/
+}

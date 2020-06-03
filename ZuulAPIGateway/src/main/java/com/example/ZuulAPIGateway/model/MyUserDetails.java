@@ -1,4 +1,4 @@
-/*package com.example.ZuulAPIGateway.model;
+package com.example.ZuulAPIGateway.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,4 +54,4 @@ public class MyUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-}*/
+}

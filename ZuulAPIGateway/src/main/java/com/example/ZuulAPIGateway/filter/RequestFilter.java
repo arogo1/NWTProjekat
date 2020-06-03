@@ -1,4 +1,4 @@
-/*package com.example.ZuulAPIGateway.filter;
+package com.example.ZuulAPIGateway.filter;
 
 import java.io.IOException;
 
@@ -58,4 +58,4 @@ public class RequestFilter extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 
-*/
+}

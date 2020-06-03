@@ -1,4 +1,4 @@
-/*package com.example.ZuulAPIGateway.model;
+package com.example.ZuulAPIGateway.model;
 
 public class AuthRequest {
     private String username;
@@ -34,4 +34,4 @@ public class AuthRequest {
                 ", password='" + password + '\'' +
                 '}';
     }
-}*/
+}

@@ -1,4 +1,4 @@
-/*package com.example.ZuulAPIGateway.contoller;
+package com.example.ZuulAPIGateway.contoller;
 
 import com.example.ZuulAPIGateway.model.AuthRequest;
 import com.example.ZuulAPIGateway.model.AuthResponse;
@@ -59,4 +59,4 @@ public class AuthController {
 
         return ResponseEntity.ok(new AuthResponse(jwt));
     }
-}*/
+}

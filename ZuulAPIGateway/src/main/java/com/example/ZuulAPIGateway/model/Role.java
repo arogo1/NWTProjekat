@@ -1,4 +1,4 @@
-/*package com.example.ZuulAPIGateway.model;
+package com.example.ZuulAPIGateway.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,4 +42,4 @@ public class Role {
                 "Role[id=%d, type='%s']",
                 id, type);
     }
-}*/
+}

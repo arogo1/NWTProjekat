@@ -1,4 +1,4 @@
-/*package com.example.ZuulAPIGateway.util;
+package com.example.ZuulAPIGateway.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -57,4 +57,4 @@ public class JwtUtil {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-}*/
+}
