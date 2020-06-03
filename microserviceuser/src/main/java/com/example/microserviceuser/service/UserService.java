@@ -4,16 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< Updated upstream
 import com.example.microserviceuser.models.User;
 import com.example.microserviceuser.models.error.ResourceNotFoundException;
-=======
-import com.example.microserviceuser.models.UserModel;
->>>>>>> Stashed changes
 import com.example.microserviceuser.repository.UserRepository;
 
 @Service
@@ -37,20 +32,16 @@ public class UserService implements IUserService {
 		return userRepository.findById(id);
 	}
 	
-<<<<<<< Updated upstream
 	@Override
 	public boolean findUserByUsername(String username){
-=======
-	public Optional<UserModel> findUserByUsername(String username){
->>>>>>> Stashed changes
 		// TODO Auto-generated method stub
 		Iterable<User> allUsers = userRepository.findAll();
 		for (User usr : allUsers) {
 			if(usr.getUsername().contentEquals(username)) {
-				return Optional.of(usr);
+				return true;
 			}
 		}
-		return Optional.of(null);
+		return false;
 	}
 
 
