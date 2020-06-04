@@ -45,7 +45,7 @@ public class UserController {
     	System.out.println(userService.findUserById(id).isEmpty());
     	if(userService.findUserById(id).isEmpty())
     		throw new ResourceNotFoundException(id);
-		return userService.findUserById(id).get();	
+		return userService.findUserById(id).get();
     }
     
    /*@GetMapping("/user/find/{username}")
@@ -91,21 +91,21 @@ public class UserController {
     		}
     		throw new ResourceNotFoundException("Already exists user with this username!");
     	}
-    	
+
     	/*else if(!userService.findUserById(id).isEmpty() && userService.findUserByUsername(newUser.getUsername())) {
     		if(response)
 				return userService.saveUser(newUser);
 			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");
     	}*/
-    	
+
     	else if(!userService.findUserByUsername(newUser.getUsername())) {
     		if(response)
     			return userService.updateUser(newUser, id);
 			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");
     	}
-    		 
+
 		throw new ResourceNotFoundException("Cannot update because already exists user with this username!");
-       
+
     }
     
     @PostMapping("/user/login")
