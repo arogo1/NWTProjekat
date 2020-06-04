@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { QuestionGroup, Inquiry } from '../Models/inquiry';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inquiry',
@@ -14,13 +15,14 @@ export class InquiryComponent implements OnInit {
   private inquiry: Inquiry;
   private numberOfInquiry: Array<number> = [];
   inquiryForm: FormGroup;
-  constructor() {
+  nesto: string;
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.inquiry = new Inquiry();
   }
 
   ngOnInit() {
-    this.inquiryForm = new FormGroup({
-      inquiryName: new FormControl()
+    this.inquiryForm = this.fb.group({
+      inquiryName: ['', [Validators.required]]
     });
   }
 
@@ -29,7 +31,11 @@ export class InquiryComponent implements OnInit {
   }
 
   save(){
-    this.inquiry.inquiryName = this.inquiryName.nativeElement.value
-    //return this.http.get("localhost:8000/");
+    //this.inquiry.inquiryName = this.inquiryName.nativeElement.value
+    this.http.get<string>('http://localhost:8000/nesto').subscribe(response => {
+      this.nesto = response;
+    }), error =>{
+      this.nesto = error;
+    };
+    }
   }
-}

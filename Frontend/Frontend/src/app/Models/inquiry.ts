@@ -16,6 +16,7 @@ export class QuestionGroup {
 
 export class Question {
     public questionId: number;
+    public question: string;
     public answers: Answer[] = [];
 }
 

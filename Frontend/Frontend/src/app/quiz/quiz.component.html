@@ -1,17 +1,15 @@
 <app-header></app-header>
 
 <div class="p-3 mb-2 bg-dark text-white" style="text-align: center; font-size: xx-large;">Do Quiz!</div>
-<form class="border border-dark rounded" style="margin: 1%; width: 40%;"  >
-
-  <div class="form-row" style="margin: 1%;" *ngFor="let x of inquirys">
-        <label>Inquiry name</label>
-        <input type="text" readonly class="form-control-plaintext"  value="{{x.inquiryName}}">
-    <!-- <span>{{x.inquiryName}}</span> -->
-    
-    <!-- type="text" class="form-control" style="width: 30%; margin-left: 1%;" -->
+<form class="border border-dark rounded" style="margin: 1% auto; width: 40%;">
+  <div *ngFor="let x of inquirys">
+    <div class="form-row" style="margin: 1%;">
+      <label style="margin-top: 1.2%;">Inquiry name:</label>
+      <input type="text" class="form-control-plaintext" readonly style="width: 50%; margin-left: 5%;" value="{{x.inquiryName}}">
+      <button class="btn btn-primary" [routerLink]="['/start-quiz']" style="margin-left: 1%;">Start quiz</button>
+    </div>
   </div>
-  
-<div class="row" style="margin: 1%;">
-  <button class="btn btn-primary" [routerLink]="['/start-quiz']">Start quiz</button>
-</div>
 </form>
+
+
+

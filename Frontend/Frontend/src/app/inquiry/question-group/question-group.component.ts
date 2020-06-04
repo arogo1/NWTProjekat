@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { QuestionGroup, Question } from 'src/app/Models/inquiry';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-question-group',
@@ -12,7 +13,8 @@ export class QuestionGroupComponent implements OnInit {
 
   private questionGroup: QuestionGroup;
   private createQuestion: Array<number> = [];
-  constructor() { 
+  questionGrupForm: FormGroup;
+  constructor(private fb: FormBuilder) { 
     this.questionGroup = new QuestionGroup();
   }
 

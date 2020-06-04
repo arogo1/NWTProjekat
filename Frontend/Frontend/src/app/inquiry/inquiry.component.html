@@ -1,10 +1,15 @@
 <app-header></app-header>
 <p style="text-align: center; font-size: 32px;">Create new inquiry</p>
-<form>
-  <div class="form-row" style="margin: 1%;">
-    <label>Inquiry name</label>
-    <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" #inquiryName>
-  </div>
+<form [formGroup]="inquiryForm">
+    <div class="form-row" style="margin: 1%;" [ngClass]="{'has-error' : inquiryForm.get('inquiryName').errors &&
+  (inquiryForm.get('inquiryName').touched || inquiryForm.get('inquiryName').dirty)}">
+      <label>Inquiry name</label>
+      <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" #inquiryName formControlName="inquiryName">
+        <span class="text-danger" *ngIf="inquiryForm.get('inquiryName').errors &&
+        (inquiryForm.get('inquiryName').touched || inquiryForm.get('inquiryName').dirty)"><br>
+          <span *ngIf="inquiryForm.get('inquiryName').errors.required" style="margin-left: 1%">Name is required</span>
+        </span>
+    </div>
   <div class="form-row" style="margin: 1%;">
     <label>Category</label>
     <select class="form-control" style="width: 30%; margin-left: 1%;">
@@ -15,10 +20,10 @@
   </div>
   <button class="btn btn-primary" style="margin: 1%;" (click)="addQuestionGroup()">Add question group</button>
   <section *ngFor="let x of numberOfInquiry; let i = index">
-    <app-question-group ></app-question-group>
+    <app-question-group></app-question-group>
   </section>
   <div class="row" style="margin: 1%;">
-    <button class="btn btn-primary" (click)="save()">Save</button>
+    <button class="btn btn-primary" (click)="save()" [disabled]="!inquiryForm.valid">Save</button>
     <button class="btn btn-secondary" style="margin-left: 1%;">Cancel</button>
   </div>
 </form>

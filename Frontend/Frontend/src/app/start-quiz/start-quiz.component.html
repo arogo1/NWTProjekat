@@ -1,3 +1,32 @@
 <app-header></app-header>
 <div class="p-3 mb-2 bg-dark text-white" style="text-align: center; font-size: xx-large;">Good Luck!</div>
-<p>start-quiz works!</p>
+<form>
+    <div class="form-row" style="margin: 1%;">
+        <label style="margin-top: 0.6%;">Inquiry name:</label>
+        <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" readonly
+            value="{{inquiry.inquiryName}}">
+    </div>
+    <div *ngFor="let questionGroup of inquiry.questionGroups" class="border border-dark rounded" style="margin: 1%">
+        <div class="form-row" style="margin: 1%;">
+            <label style="margin-top: 0.6%;">Question group name</label>
+            <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" readonly
+                value="{{questionGroup.questionGroupName}}">
+        </div>
+        <div *ngFor="let question of questionGroup.questions" class="border border-dark rounded" style="margin: 1%;">
+            <div class="form-row" style="margin: 1%;">
+                <label style="margin-top: 0.6%;">Question</label>
+                <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" readonly
+                    value="{{question.question}}">
+            </div>
+            <div *ngFor="let answer of question.answers">
+                <div class="form-row" style="margin: 1%;">
+                    <label style="margin-top: 0.6%;">Answer</label>
+                    <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" readonly
+                        value="{{answer.answer}}">
+                    <input type="checkbox" style="margin-left: 5%;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" style="margin: 1%;" (click)="done()">Done</button>
+</form>

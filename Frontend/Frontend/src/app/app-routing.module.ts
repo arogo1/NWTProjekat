@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'home-component', component: HomeComponent /*, canActivate:[AuthGuard] */},
   { path: 'login', component: LoginComponent},
   { path: 'create-inquiry', component: InquiryComponent},
-  { path: 'quiz', component: QuizComponent, canActivate : [AuthGuard]},
+  { path: 'quiz', component: QuizComponent },
   { path: 'result', component: ResultComponent, canActivate : [AuthGuard]},
   {path:'',redirectTo:'/login',pathMatch:'full'},
   { path: 'start-quiz', component: StartQuizComponent},
