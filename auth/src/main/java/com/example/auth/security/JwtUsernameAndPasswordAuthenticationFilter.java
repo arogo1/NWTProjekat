@@ -21,6 +21,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //import com.eureka.common.security.JwtConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.example.common.security.JwtConfig;
+import com.example.microserviceuser.models.ApplUser;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -45,7 +46,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 		try {
 			
 			
-			UserCredentials creds = new ObjectMapper().readValue(request.getInputStream(), UserCredentials.class);
+			ApplUser creds = new ObjectMapper().readValue(request.getInputStream(),ApplUser.class);
 			
 			
 			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
@@ -79,22 +80,5 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 		response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
 	}
 	
-	// A (temporary) class just to represent the user credentials
-	private static class UserCredentials {
-	    private String username, password;
-	    
-	    public String getUsername() {
-			return username;
-		}
-	    
-	    public void setUsername(String username) {
-			this.username = username;
-		}
-	    public String getPassword() {
-			return password;
-		}
-	    public void setPassword(String password) {
-			this.password = password;
-		}
-	}
+	
 }

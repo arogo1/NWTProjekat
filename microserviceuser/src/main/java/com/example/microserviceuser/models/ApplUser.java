@@ -38,6 +38,7 @@ public class ApplUser {
 	private String password;
 	
 	//dodaj rolu
+	
 	@Column(name="Role")
 	private String role;
 	
@@ -51,7 +52,7 @@ public class ApplUser {
 	public ApplUser(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.role = "USER";
+		this.role = "ROLE_USER";
 		this.loged = false;
 	}
 	
@@ -59,7 +60,7 @@ public class ApplUser {
 		this.userId = id;
 		this.username = username;
 		this.password = password;
-		this.role = "USER";
+		this.role = "ROLE_USER";
 		this.loged = false;
 	}
 	
@@ -68,7 +69,7 @@ public class ApplUser {
 		this.userId = id;
 		this.username = username;
 		this.password = password;
-		this.role = role;
+		this.role = "ROLE_USER";
 		this.loged = false;
 	}
 	

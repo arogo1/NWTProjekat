@@ -51,7 +51,13 @@ public class MicroserviceuserApplication {
 	
 	    @Autowired
 	    IUserService userService;
-
+	    
+	    @PostMapping(value="/dodajRolu")
+	    public ApplUser rola(@RequestBody ApplUser user) {
+	    	user.setRole("ROLE_USER");
+	    	return user;
+	    }
+	    
 	   @PostMapping(value = "/saveUser")
 	    public String saveUser(@RequestBody ApplUser user) {
 	        System.out.println("Radi");
