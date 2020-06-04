@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.microserviceuser.models.User;
+import com.example.microserviceuser.models.ApplUser;
 
 @Component
 public class UserDAO implements IUserDAO {
@@ -14,21 +14,21 @@ public class UserDAO implements IUserDAO {
 	UserRepository userRepository;
 
 	@Override
-	public User save(User user) throws Exception {
+	public ApplUser save(ApplUser user) throws Exception {
 		// TODO Auto-generated method stub
 		return userRepository.save(user);
 		
 	}
 
 	@Override
-	public Iterable<User> findAll() throws Exception {
+	public Iterable<ApplUser> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return userRepository.findAll();
 		
 	}
 
 	@Override
-	public Optional<User> findById(Integer id) throws Exception {
+	public Optional<ApplUser> findById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}

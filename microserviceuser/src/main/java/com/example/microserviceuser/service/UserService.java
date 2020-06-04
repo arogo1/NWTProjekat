@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.microserviceuser.models.User;
+import com.example.microserviceuser.models.ApplUser;
 import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
 
@@ -18,16 +18,16 @@ public class UserService implements IUserService {
     private UserRepository userRepository;
 
 	@Override
-	public List<User> findAllUsers() {
+	public List<ApplUser> findAllUsers() {
 		// TODO Auto-generated method stub
-		List<User> users = new ArrayList<User>();
-        Iterable<User> response = userRepository.findAll();
+		List<ApplUser> users = new ArrayList<ApplUser>();
+        Iterable<ApplUser> response = userRepository.findAll();
         response.forEach(users::add);
         return users;
 	}
 
 	@Override
-	public Optional<User> findUserById(Integer id){
+	public Optional<ApplUser> findUserById(Integer id){
 		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}
@@ -35,8 +35,8 @@ public class UserService implements IUserService {
 	@Override
 	public boolean findUserByUsername(String username){
 		// TODO Auto-generated method stub
-		Iterable<User> allUsers = userRepository.findAll();
-		for (User usr : allUsers) {
+		Iterable<ApplUser> allUsers = userRepository.findAll();
+		for (ApplUser usr : allUsers) {
 			if(usr.getUsername().contentEquals(username)) {
 				return true;
 			}
@@ -46,7 +46,7 @@ public class UserService implements IUserService {
 
 
 	@Override
-	public User saveUser(User user){
+	public ApplUser saveUser(ApplUser user){
 		// TODO Auto-generated method stub	
 		return userRepository.save(user);
 	}
@@ -58,7 +58,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User updateUser(User newUser, Integer id){
+	public ApplUser updateUser(ApplUser newUser, Integer id){
 		// TODO Auto-generated method stub
 		return userRepository.findById(id)
                 .map(user -> {
@@ -77,13 +77,13 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean login(User user) {
+	public boolean login(ApplUser user) {
 		// TODO Auto-generated method stub
-		Iterable<User> allUsers = userRepository.findAll();
-		Iterable<User> logedUsers = userRepository.findAll();
-		for (User usr : allUsers) {
+		Iterable<ApplUser> allUsers = userRepository.findAll();
+		Iterable<ApplUser> logedUsers = userRepository.findAll();
+		for (ApplUser usr : allUsers) {
 			if(usr.getUsername().contentEquals(user.getUsername()) && usr.getPassword().contentEquals(user.getPassword())) {
-				for(User logedusr : logedUsers) {
+				for(ApplUser logedusr : logedUsers) {
 					if(logedusr.getLoged()) 
 						return false;
 				}
@@ -96,10 +96,10 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean logout(User user) {
+	public boolean logout(ApplUser user) {
 		// TODO Auto-generated method stub
-		Iterable<User> allUsers = userRepository.findAll();
-		for (User usr : allUsers) {
+		Iterable<ApplUser> allUsers = userRepository.findAll();
+		for (ApplUser usr : allUsers) {
 			if(usr.getUsername().contentEquals(user.getUsername()) && usr.getPassword().contentEquals(user.getPassword())) {
 				usr.setLoged(false);
 				userRepository.save(usr);
