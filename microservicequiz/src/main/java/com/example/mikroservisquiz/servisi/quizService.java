@@ -18,11 +18,11 @@ public class quizService {
     @Autowired
     private AmqpTemplate rabbitTemplate;
 
-    @Value("${javainuse.rabbitmq.exchange}")
+   /* @Value("${javainuse.rabbitmq.exchange}")
     private String exchange;
 
     @Value("${javainuse.rabbitmq.routingkey}")
-    private String routingkey;
+    private String routingkey;*/
 
     public List<Quiz> getAllQuizes(){
         return repository.findAll();
@@ -32,11 +32,11 @@ public class quizService {
         return repository.findById(id);
     }
 
-    public void addQuiz(Quiz quiz){
+   /* public void addQuiz(Quiz quiz){
         rabbitTemplate.convertAndSend(exchange, routingkey, quiz);
         System.out.println("Send msg = " + quiz);
         repository.save(quiz);
-    }
+    }*/
 
     public void deleteQuiz(int id){
         repository.deleteById(id);

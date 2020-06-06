@@ -49,4 +49,16 @@ public class InquiryService implements IInquiryService {
     public List<Inquiry> getInquiryByUserId(int userId) throws Exception{
         return inquiryDAO.getInquiryByUserId(userId);
     }
+
+    @Override
+    public void deleteUserInquirys(List<Inquiry> inquirys) throws Exception {
+        inquiryDAO.deleteUserInquirs(inquirys);
+    }
+
+    @Override
+    public void deleteInquiry(Inquiry inquiry) throws Exception {
+        inquiryDAO.deleteInquiry(inquiry);
+    }
+
+
 }

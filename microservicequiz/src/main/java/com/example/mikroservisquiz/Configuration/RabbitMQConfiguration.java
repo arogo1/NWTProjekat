@@ -1,5 +1,8 @@
+/*
 package com.example.mikroservisquiz.Configuration;
 
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,32 +18,38 @@ import org.springframework.amqp.core.BindingBuilder;
 @Configuration
 public class RabbitMQConfiguration {
 
-    @Value("${javainuse.rabbitmq.queue}")
+    @Value("${rabbitmq.queue}")
     String queueName;
 
-    @Value("${javainuse.rabbitmq.exchange}")
-    String exchange;
+    @Value("${spring.rabbitmq.username}")
+    String username;
 
-    @Value("${javainuse.rabbitmq.routingkey}")
-    private String routingkey;
+    @Value("${spring.rabbitmq.password}")
+    private String password;
+
+    @Value("${spring.rabbitmq.host}")
+    private String host;
 
     @Bean
     Queue queue() {
         return new Queue(queueName, false);
     }
 
-    @Bean
-    DirectExchange exchange() {
-        return new DirectExchange(exchange);
-    }
 
     @Bean
-    Binding binding(Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(routingkey);
+    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory
+            , MessageListenerAdapter messageListenerAdapter){
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.setQueueNames(queueName);
+        container.setMessageListener(messageListenerAdapter);
+        return container;
     }
 
+
     @Bean
-    public AmqpTemplate getRabbitTemplate(ConnectionFactory connectionFactory) {
-        return new RabbitTemplate(connectionFactory);
+    MessageListenerAdapter listenerAdapter(Consumer handler){
+        return new MessageListenerAdapter(handler, "handleMessage");
     }
-}
+
+}*/

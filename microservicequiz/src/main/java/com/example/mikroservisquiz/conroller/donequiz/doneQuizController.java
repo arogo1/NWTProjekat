@@ -24,9 +24,6 @@ import org.springframework.web.client.RestTemplate;
      doneQuiyService service;
 
      @Autowired
-     quizService quizService;
-
-     @Autowired
      private RestTemplate restTemplate;
 
      @GetMapping("/doneQuizes")

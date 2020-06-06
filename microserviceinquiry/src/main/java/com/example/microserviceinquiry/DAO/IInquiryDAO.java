@@ -14,4 +14,8 @@ public interface IInquiryDAO {
     List<Inquiry> getInquiryByCategoryId(int categoryId) throws Exception;
 
     List<Inquiry> getInquiryByUserId(int userId) throws Exception;
+
+    void deleteUserInquirs(List<Inquiry>inquiries) throws Exception;
+
+    void deleteInquiry(Inquiry inquiry) throws  Exception;
 }

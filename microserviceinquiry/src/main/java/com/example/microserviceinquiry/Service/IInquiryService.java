@@ -16,4 +16,7 @@ public interface IInquiryService {
     List<Inquiry> getInquiryByName(String inquiryName) throws Exception;
 
     List<Inquiry> getInquiryByUserId(int userId) throws Exception;
+
+    void deleteUserInquirys(List<Inquiry> inquirys) throws Exception;
+    void deleteInquiry(Inquiry inquiry) throws Exception;
 }

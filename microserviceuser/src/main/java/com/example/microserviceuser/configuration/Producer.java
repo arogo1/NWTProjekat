@@ -1,4 +1,4 @@
-/*package com.example.microserviceuser.configuration;
+package com.example.microserviceuser.configuration;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,9 @@ public class Producer {
     @Value("${javainuse.rabbitmq.routingkey}")
     private String routingkey;
 
-    public void send(Integer word) {
-        rabbitTemplate.convertAndSend(exchange, routingkey, word);
-        System.out.println("Send msg = " + word);
+    public void send(Integer id) {
+        rabbitTemplate.convertAndSend(exchange, routingkey, id);
+        System.out.println("Send msg = " + id);
 
     }
-}*/
+}

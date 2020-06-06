@@ -49,4 +49,15 @@ public class InquiryDAO implements IInquiryDAO {
         response.forEach(inquirys::add);
         return inquirys;
     }
+
+
+    @Override
+    public void deleteUserInquirs(List<Inquiry> inquirys) throws Exception {
+        inquiryRepository.deleteAll(inquirys);
+    }
+
+    @Override
+    public void deleteInquiry(Inquiry inquiry) throws Exception {
+        inquiryRepository.delete(inquiry);
+    }
 }

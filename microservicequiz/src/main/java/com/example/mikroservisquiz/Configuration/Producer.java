@@ -1,14 +1,16 @@
-package com.example.mikroservisquiz.servisi;
+/*
+package com.example.mikroservisquiz.Configuration;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
-@Service
-public class ProducerService {
+public class Producer {
     @Autowired
     private AmqpTemplate rabbitTemplate;
+
+    @Value("${rabbitmq.queue}")
+    String queueName;
 
     @Value("${rabbitmq.exchange}")
     String exchange;
@@ -16,8 +18,10 @@ public class ProducerService {
     @Value("${rabbitmq.routingKey}")
     private String routingKey;
 
-    public void send(Integer userId) {
-        rabbitTemplate.convertAndSend(exchange, routingKey, userId.toString());
-        System.out.println("Message sent with userId = " + userId);
+    public void send(Integer id) {
+        rabbitTemplate.convertAndSend(exchange, routingKey, id);
+        System.out.println("Send msg = " + id);
+
     }
 }
+*/

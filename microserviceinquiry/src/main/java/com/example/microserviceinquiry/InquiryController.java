@@ -12,15 +12,10 @@ import com.example.microserviceinquiry.Models.*;
 import com.example.microserviceinquiry.Service.IInquiryService;
 import com.example.microserviceinquiry.Service.ProducerService;
 
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @CrossOrigin(origins = "*")
@@ -175,6 +170,26 @@ public class InquiryController {
             return inquiryService.getInquiryById(inquiryId).GetNumberOfQuestion();
         } catch (Exception e) {
             throw new RequestException("Nije moguce izvrsiti pretragu, pokusajte ponovo");
+        }
+    }
+
+    @DeleteMapping("/deleteAllUserInquiry/{userId}")
+    public void deleteAllUserInquiry(@PathVariable int userId){
+        try {
+            List<Inquiry> inquirys = getInquiryByUserId(userId);
+            if(inquirys.size() > 0 && inquirys != null) inquiryService.deleteUserInquirys(inquirys);
+        } catch (Exception e){
+            throw new RequestException("Nije moguce izvrsiti brisanje, pokusajte ponovo");
+        }
+    }
+
+    @DeleteMapping("/deleteInquiryAndQuiz/{userId}")
+    public void deleteInquiryAndQuiz(@PathVariable int id){
+        try {
+            Inquiry inquiry = getInquiryById(id);
+            if(inquiry != null) inquiryService.deleteInquiry(inquiry);
+        } catch (Exception e){
+            throw new RequestException("Nije moguce izvrsiti brisanje, pokusajte ponovo");
         }
     }
 }
