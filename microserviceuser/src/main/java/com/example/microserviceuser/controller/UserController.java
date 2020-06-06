@@ -3,7 +3,11 @@ package com.example.microserviceuser.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.microserviceuser.configuration.Producer;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +35,10 @@ public class UserController {
 	
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
+	@Autowired
+	private Producer producer;
+
 	@GetMapping("/users")
 	public List<ApplUser>getUsers() {
 			if(userService.findAllUsers().toString()=="[]")
@@ -69,8 +76,31 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable Integer id) {
-		userService.deleteUserById(id);
+    public void deleteUser(@PathVariable Integer id)
+	{
+		ApplUser user = userService.findUserById(id).orElse(null);
+
+		if(user == null){
+			throw new InternalException("There is NO user with id: " + id + " in database.");
+		}
+
+		Integer action = user.getUserId();
+
+		if(action == 0){
+			producer.send(id);//ovdje bi trebalo da se inquiry postavi na nula
+		}
+		else if(action == 1){
+			// zapoceto brisanje
+		}
+		else if(action == 2){
+			// do ovog ne dolazi jer nema vracanja na producera dok ne zavrsi brisanje ili dok se ne desi error
+		}
+		else if(action == 3){
+			userService.deleteUserById(id);
+		}
+		else if(action == 4){
+			throw new InternalException("There is a problem with deleting users comments");
+		}
     }
     
     @DeleteMapping("/deleteAll")

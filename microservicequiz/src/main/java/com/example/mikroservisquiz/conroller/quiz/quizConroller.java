@@ -9,14 +9,11 @@ import com.example.mikroservisquiz.servisi.ProducerService;
 import com.example.mikroservisquiz.servisi.quizService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@RequestMapping(value = "/javainuse-rabbitmq/")
 public class quizConroller{
 
     @Autowired
@@ -52,6 +49,7 @@ public class quizConroller{
         // newQuiz.SetNumOfAns(numberOfQuestion);
         Quiz newQuiz = new Quiz(inquirId, 0, numberOfQuestion); //na početku kreiranja kviza rezultat bi trebao biti postavljen na nula
         try{
+            //poziva se rabbit i ovako
             service.addQuiz(newQuiz);
         }
         catch(Exception e){

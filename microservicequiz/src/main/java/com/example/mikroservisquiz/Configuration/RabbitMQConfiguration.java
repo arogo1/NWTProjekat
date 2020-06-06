@@ -15,14 +15,14 @@ import org.springframework.amqp.core.BindingBuilder;
 @Configuration
 public class RabbitMQConfiguration {
 
-    @Value("${rabbitmq.queue}")
+    @Value("${javainuse.rabbitmq.queue}")
     String queueName;
 
-    @Value("${rabbitmq.exchange}")
+    @Value("${javainuse.rabbitmq.exchange}")
     String exchange;
 
-    @Value("${rabbitmq.routingKey}")
-    private String routingKey;
+    @Value("${javainuse.rabbitmq.routingkey}")
+    private String routingkey;
 
     @Bean
     Queue queue() {
@@ -36,7 +36,7 @@ public class RabbitMQConfiguration {
 
     @Bean
     Binding binding(Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(routingKey);
+        return BindingBuilder.bind(queue).to(exchange).with(routingkey);
     }
 
     @Bean

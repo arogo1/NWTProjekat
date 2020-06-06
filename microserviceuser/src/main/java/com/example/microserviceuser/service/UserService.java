@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.microserviceuser.models.ApplUser;
@@ -16,6 +18,15 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
+	@Autowired
+	private AmqpTemplate rabbitTemplate;
+
+	@Value("${javainuse.rabbitmq.exchange}")
+	private String exchange;
+
+	@Value("${javainuse.rabbitmq.routingkey}")
+	private String routingkey;
 
 	@Override
 	public List<ApplUser> findAllUsers() {
@@ -29,6 +40,8 @@ public class UserService implements IUserService {
 	@Override
 	public Optional<ApplUser> findUserById(Integer id){
 		// TODO Auto-generated method stub
+		rabbitTemplate.convertAndSend(exchange, routingkey, id);
+		System.out.println("Send msg = " + id);
 		return userRepository.findById(id);
 	}
 	
