@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.microserviceuser.models.ApplUser;
 import com.example.microserviceuser.models.error.ResourceNotFoundException;
 import com.example.microserviceuser.repository.UserRepository;
+import com.example.microserviceuser.validation.MyPasswordEncoder;
 
 @Service
 public class UserService implements IUserService {
@@ -19,14 +20,17 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
-	@Autowired
-	private AmqpTemplate rabbitTemplate;
+	//@Autowired
+	//private AmqpTemplate rabbitTemplate;
+	
+	 @Autowired
+	 MyPasswordEncoder myPasswordEncoder;
 
-	@Value("${javainuse.rabbitmq.exchange}")
-	private String exchange;
+	//@Value("${javainuse.rabbitmq.exchange}")
+	//private String exchange;
 
-	@Value("${javainuse.rabbitmq.routingkey}")
-	private String routingkey;
+	//@Value("${javainuse.rabbitmq.routingkey}")
+	//private String routingkey;
 
 	@Override
 	public List<ApplUser> findAllUsers() {
@@ -40,7 +44,7 @@ public class UserService implements IUserService {
 	@Override
 	public Optional<ApplUser> findUserById(Integer id){
 		// TODO Auto-generated method stub
-		rabbitTemplate.convertAndSend(exchange, routingkey, id);
+		//rabbitTemplate.convertAndSend(exchange, routingkey, id);
 		System.out.println("Send msg = " + id);
 		return userRepository.findById(id);
 	}
@@ -61,6 +65,8 @@ public class UserService implements IUserService {
 	@Override
 	public ApplUser saveUser(ApplUser user){
 		// TODO Auto-generated method stub	
+		user.setPassword(myPasswordEncoder.passwordEncoder().encode(user.getPassword()));
+		user.setRole("USER");
 		return userRepository.save(user);
 	}
 

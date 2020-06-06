@@ -3,7 +3,7 @@ package com.example.microserviceuser.controller;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.microserviceuser.configuration.Producer;
+//import com.example.microserviceuser.configuration.Producer;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,8 @@ public class UserController {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@Autowired
-	private Producer producer;
+	//@Autowired
+	//private Producer producer;
 
 	@GetMapping("/users")
 	public List<ApplUser>getUsers() {
@@ -75,7 +75,7 @@ public class UserController {
 			throw new ResourceNotFoundException("Password must contain 8-40digits,at least one digit,at least one lower case character and at least one upper case character!");
     }
 
-    @DeleteMapping("/user/{id}")
+    /*@DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable Integer id)
 	{
 		ApplUser user = userService.findUserById(id).orElse(null);
@@ -101,7 +101,7 @@ public class UserController {
 		else if(action == 4){
 			throw new InternalException("There is a problem with deleting users comments");
 		}
-    }
+    }*/
     
     @DeleteMapping("/deleteAll")
     public void deleteAllUsers() {
@@ -162,6 +162,13 @@ public class UserController {
 			}
 		}
 		throw new ResourceNotFoundException("No loged user found!");
+    }
+    
+    //za admina
+    @GetMapping("/admin")
+	public List<ApplUser>homeAdmin() {
+		return userService.findAllUsers();
+			
     }
 
 }
