@@ -35,11 +35,19 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("Eh sada: ");
 		//final String uri = "http://localhost:8081/user-microservice/users";
 	     
 	    //RestTemplate restTemplate = new RestTemplate();
 	    //List<ApplUser> users1 = restTemplate.getForObject(uri, List.class);
+	    
+		System.out.println("q3456789");
+		//List<ApplUser> users = restTemplate.getForObject("http://user-microservice/users", List.class);
+		ApplUser user1 = restTemplate.getForObject("http://user-microservice/user/2", ApplUser.class);
+		//for(ApplUser test: users) System.out.println(test);
+		System.out.println(user1);
+		System.out.println("q3456789");
+		
+		
 		
 	    
 	    // hard coding the users
@@ -51,17 +59,17 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 		//final List<ApplUser> users = restTemplate.getForObject("Http://ZuulAPIGateway//user-microservice/users", List.class);
 		
 
-		for(ApplUser appUser: users) {
-			if(appUser.getUsername().equals(username)) {
+		//for(ApplUser appUser: users) {
+			if(user1.getUsername().equals(username)) {
 				//appUser.setRole("ADMIN");
 				
 				List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-		                	.commaSeparatedStringToAuthorityList("ROLE_" + appUser.getRole());
+		                	.commaSeparatedStringToAuthorityList("ROLE_" + user1.getRole());
 				
 				
-				return new User(appUser.getUsername(), appUser.getPassword(), grantedAuthorities); 
+				return new User(user1.getUsername(), user1.getPassword(), grantedAuthorities); 
 			}
-		}
+		//}
 		
 		
 		throw new UsernameNotFoundException("Username: " + username + " not found");
