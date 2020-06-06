@@ -51,25 +51,26 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 		
 	    
 	    // hard coding the users
-		final List<ApplUser> users = Arrays.asList(
+		/*final List<ApplUser> users = Arrays.asList(
 			new ApplUser(1, "omar", encoder.encode("12345"), "USER"),
 			new ApplUser(2, "admin", encoder.encode("12345"), "ADMIN")
-		);
+		);*/
 		
-		//final List<ApplUser> users = restTemplate.getForObject("Http://ZuulAPIGateway//user-microservice/users", List.class);
 		
+		ResponseEntity<ApplUser[]> result = restTemplate.getForEntity("http://user-microservice/users", ApplUser[].class);
+		ApplUser[] usersFinal = result.getBody();
 
-		//for(ApplUser appUser: users) {
-			if(user1.getUsername().equals(username)) {
+		for(ApplUser appUser: usersFinal) {
+			if(appUser.getUsername().equals(username)) {
 				//appUser.setRole("ADMIN");
 				
 				List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-		                	.commaSeparatedStringToAuthorityList("ROLE_" + user1.getRole());
+		                	.commaSeparatedStringToAuthorityList("ROLE_" + appUser.getRole());
 				
 				
-				return new User(user1.getUsername(), user1.getPassword(), grantedAuthorities); 
+				return new User(appUser.getUsername(), appUser.getPassword(), grantedAuthorities); 
 			}
-		//}
+		}
 		
 		
 		throw new UsernameNotFoundException("Username: " + username + " not found");
