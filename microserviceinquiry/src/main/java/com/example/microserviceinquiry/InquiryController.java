@@ -1,12 +1,13 @@
 package com.example.microserviceinquiry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import com.example.microserviceinquiry.Exception.SaveException;
-// import com.example.microserviceinquiry.Grpc.GrpcInquiryServiceClient;
+//import com.example.microserviceinquiry.Grpc.GrpcInquiryServiceClient;
 import com.example.microserviceinquiry.Exception.RequestException;
 import com.example.microserviceinquiry.Models.*;
 import com.example.microserviceinquiry.Service.IInquiryService;
@@ -15,7 +16,19 @@ import com.example.microserviceinquiry.Service.ProducerService;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+<<<<<<< Updated upstream
 import org.springframework.web.bind.annotation.*;
+=======
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> Stashed changes
 import org.springframework.web.client.RestTemplate;
 
 @CrossOrigin(origins = "*")
@@ -41,34 +54,34 @@ public class InquiryController {
 
     @PostMapping("/saveInquiry")
     public ResponseEntity<Inquiry> saveInquiry(@RequestBody Inquiry inquiry) {
-        //int userId = restTemplate.getForObject("Http://user-microservice//user-microservice/getLogedUser", int.class);
-        //inquiry.SetUserId(userId);
-        int userId = 2;
-        Inquiry saveInquiry = new Inquiry();// Hardcode podaci
-        saveInquiry.SetCategoryId(3);
-        saveInquiry.SetInquiryName("Test");
-        saveInquiry.SetNumberOfQuestionGroup(4);
-        saveInquiry.SetUserId(3);
-        QuestionGroup questionGroup = new QuestionGroup("Grupa2", 5);
-        QuestionGroup questionGroup1 = new QuestionGroup("Grupa3", 5);
-        questionGroup.SetInquiry(saveInquiry);
-        questionGroup1.SetInquiry(saveInquiry);
-        List<QuestionGroup> lista = new ArrayList<QuestionGroup>();
-        lista.add(questionGroup);
-        Question question = new Question("Pitanje");
-        Answer answer = new Answer("Odgovor", true);
+        int userId = restTemplate.getForObject("http://user-microservice//user-microservice/getLogedUser", int.class);
+        inquiry.SetUserId(userId);
+        // int userId = 2;
+        // Inquiry saveInquiry = new Inquiry();// Hardcode podaci
+        // saveInquiry.SetCategoryId(3);
+        // saveInquiry.SetInquiryName("Test");
+        // saveInquiry.SetNumberOfQuestionGroup(4);
+        // saveInquiry.SetUserId(3);
+        // QuestionGroup questionGroup = new QuestionGroup("Grupa2", 5);
+        // QuestionGroup questionGroup1 = new QuestionGroup("Grupa3", 5);
+        // questionGroup.SetInquiry(saveInquiry);
+        // questionGroup1.SetInquiry(saveInquiry);
+        // List<QuestionGroup> lista = new ArrayList<QuestionGroup>();
+        // lista.add(questionGroup);
+        // Question question = new Question("Pitanje");
+        // Answer answer = new Answer("Odgovor", true);
 
-        saveInquiry.GetQuestionGroup().add(questionGroup);
-        saveInquiry.GetQuestionGroup().add(questionGroup1);
+        // saveInquiry.GetQuestionGroup().add(questionGroup);
+        // saveInquiry.GetQuestionGroup().add(questionGroup1);
 
-        questionGroup.GetQuestions().add(question);
-        question.SetQuestionGroupId(questionGroup);
+        // questionGroup.GetQuestions().add(question);
+        // question.SetQuestionGroupId(questionGroup);
 
-        answer.SetQuestion(question);
-        question.GetAnswerDTO().add(answer);
+        // answer.SetQuestion(question);
+        // question.GetAnswerDTO().add(answer);
 
         try {
-            inquiryService.save(saveInquiry);
+            inquiryService.save(inquiry);
             producerService.send(userId);
             // Metodi save ce se proslijediti parametar inquiry,
             // na frontendu je zamisljeno da se podatak pripremi backendu
@@ -104,7 +117,8 @@ public class InquiryController {
         }
     }
 
-    @GetMapping("/getCategories")
+    @RequestMapping(value="/getCategories", method=RequestMethod.GET)
+    @ResponseBody
     public List<Category> getCatergories() {
         try {
             List<Category> response = inquiryService.getCategories();

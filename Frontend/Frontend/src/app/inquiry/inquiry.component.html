@@ -19,11 +19,11 @@
     </select>
   </div>
   <button class="btn btn-primary" style="margin: 1%;" (click)="addQuestionGroup()">Add question group</button>
-  <section *ngFor="let x of numberOfInquiry; let i = index">
+  <section *ngFor="let x of inquiry.questionGroups; let i = index">
     <app-question-group></app-question-group>
   </section>
   <div class="row" style="margin: 1%;">
-    <button class="btn btn-primary" (click)="save()" [disabled]="!inquiryForm.valid">Save</button>
-    <button class="btn btn-secondary" style="margin-left: 1%;">Cancel</button>
+    <button class="btn btn-primary" (click)="save()" [disabled]="!inquiryForm.valid" [routerLink]="['/home-component']">Save</button>
+    <button class="btn btn-secondary" style="margin-left: 1%;" [routerLink]="['/home-component']">Cancel</button>
   </div>
 </form>

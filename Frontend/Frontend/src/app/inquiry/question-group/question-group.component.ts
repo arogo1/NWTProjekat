@@ -12,7 +12,6 @@ export class QuestionGroupComponent implements OnInit {
 
 
   private questionGroup: QuestionGroup;
-  private createQuestion: Array<number> = [];
   questionGrupForm: FormGroup;
   constructor(private fb: FormBuilder) { 
     this.questionGroup = new QuestionGroup();
@@ -22,7 +21,7 @@ export class QuestionGroupComponent implements OnInit {
   }
 
   addQuestion(){
-    this.createQuestion.push(1);
+    this.questionGroup.questions.push(new Question());
   }
 
   onKey(event){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Inquiry, QuestionGroup, Question, Answer } from '../Models/inquiry';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import { Quiz, DoneQuiz } from '../Models/Quiz';
 
 @Component({
   selector: 'app-start-quiz',
@@ -14,8 +15,9 @@ export class StartQuizComponent implements OnInit {
   questionGroup: QuestionGroup;
   question: Question;
   answers: Answer;
-  quiz: string;
-  constructor(private toastr: ToastrService, private httpClient: HttpClient) {
+  quiz: Quiz;
+  doneQuiz: DoneQuiz;
+  constructor(private httpClient: HttpClient) {
     this.inquiry = new Inquiry();
     this.questionGroup = new QuestionGroup();
     this.answers = new Answer();
@@ -47,12 +49,20 @@ export class StartQuizComponent implements OnInit {
   }
 
   done(){
-    this.httpClient.post("http://localhost:8000/saveQuiz", this.quiz).subscribe(response => {
+    this.httpClient.post("http://localhost:8800/createQuiz", this.quiz).subscribe(response => {
       {
-        this.toastr.success("Done quiz successful");
       }
     }), error => {
-      this.toastr.error("Ups, something went wrong");
+      alert("Ups, something went wrong");
+    }
+  }
+
+  DoneQuiz(){
+    this.httpClient.post("http://localhost:8800/createDoneQuiz", this.doneQuiz).subscribe(response => {
+      {
+      }
+    }), error => {
+      alert("Ups, something went wrong");
     }
   }
 }

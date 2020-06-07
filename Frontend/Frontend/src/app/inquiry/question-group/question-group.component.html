@@ -8,7 +8,7 @@
         <input type="text" class="form-control" style="width: 30%; margin-left: 1%;" #pitanje>
     </div>
     <div>
-        <section *ngFor="let x of createQuestion">
+        <section *ngFor="let x of questionGroup.questions">
             <app-question (childComponent)="fetchChild($event)"></app-question>
         </section>
     </div>

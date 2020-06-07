@@ -21,7 +21,4 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.userService.userAuthentication();
   }
-
- 
-
 }

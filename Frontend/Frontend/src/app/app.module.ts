@@ -18,8 +18,6 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './shared/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -42,8 +40,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot()
   ],
   providers: [QuizService, AuthGuard,UserService],
   bootstrap: [AppComponent]

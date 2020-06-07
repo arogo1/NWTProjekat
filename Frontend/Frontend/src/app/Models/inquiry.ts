@@ -1,28 +1,28 @@
 export class Inquiry {
-    public inquiryId: number;
-    public userId: number;
-    public categoryId: number;
-    public inquiryName: string;
-    public numberOfQuestionGroup: number;
-    public questionGroups: QuestionGroup[] = [];
+    inquiryId: number;
+    userId: number;
+    categoryId: number;
+    inquiryName: string;
+    numberOfQuestionGroup: number;
+    questionGroups: QuestionGroup[] = [];
 }
 
 export class QuestionGroup {
-    public questionGroupId: number;
-    public questionGroupName: string;
-    public numberOfQuestion: number;
-    public questions: Question[] = [];
+    questionGroupId: number;
+    questionGroupName: string;
+    numberOfQuestion: number;
+    questions: Question[] = [];
 }
 
 export class Question {
-    public questionId: number;
-    public question: string;
-    public answers: Answer[] = [];
+    questionId: number;
+    question: string;
+    answers: Answer[] = [];
 }
 
 
 export class Answer {
-    public answerId: number;
-    public answer: string;
-    public isCorrect: boolean
+    answerId: number;
+    answer: string;
+    isCorrect: boolean
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { QuestionGroup, Inquiry } from '../Models/inquiry';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { Category } from '../Models/Category';
 
 @Component({
   selector: 'app-inquiry',
@@ -13,9 +13,8 @@ export class InquiryComponent implements OnInit {
   @ViewChild("inquiryName", null) inquiryName: ElementRef;
 
   private inquiry: Inquiry;
-  private numberOfInquiry: Array<number> = [];
   inquiryForm: FormGroup;
-  nesto: string;
+  categories: Category[] = [];
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.inquiry = new Inquiry();
   }
@@ -24,18 +23,24 @@ export class InquiryComponent implements OnInit {
     this.inquiryForm = this.fb.group({
       inquiryName: ['', [Validators.required]]
     });
+    this.getCategories();
   }
 
   addQuestionGroup(){
-    this.numberOfInquiry.push(1);
+    this.inquiry.questionGroups.push(new QuestionGroup());
   }
 
   save(){
-    //this.inquiry.inquiryName = this.inquiryName.nativeElement.value
-    this.http.get<string>('http://localhost:8000/nesto').subscribe(response => {
-      this.nesto = response;
+    this.inquiry.inquiryName = this.inquiryName.nativeElement.value;
+    this.http.post('http://localhost:8000/saveInquiry', this.inquiry).subscribe();
+    }
+
+    getCategories(){
+       this.http.get<Category[]>('http://localhost:8000/getCategories', {headers: new HttpHeaders().set('Content-Type', 'application/json')})
+       .subscribe(response => {
+      this.categories = response;
     }), error =>{
-      this.nesto = error;
+      alert("Ops something went wrong");
     };
     }
   }
