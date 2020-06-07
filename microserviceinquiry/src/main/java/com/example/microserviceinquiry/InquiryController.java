@@ -16,9 +16,7 @@ import com.example.microserviceinquiry.Service.ProducerService;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-<<<<<<< Updated upstream
 import org.springframework.web.bind.annotation.*;
-=======
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
->>>>>>> Stashed changes
 import org.springframework.web.client.RestTemplate;
 
 @CrossOrigin(origins = "*")
