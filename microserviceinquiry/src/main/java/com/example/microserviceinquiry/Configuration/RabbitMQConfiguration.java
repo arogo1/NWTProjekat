@@ -1,4 +1,4 @@
-package com.example.microserviceinquiry.Configuration;
+/*package com.example.microserviceinquiry.Configuration;
 
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -49,4 +49,4 @@ public class RabbitMQConfiguration {
     MessageListenerAdapter listenerAdapter(Consumer handler){
         return new MessageListenerAdapter(handler, "handleMessage");
     }
-}
+}*/

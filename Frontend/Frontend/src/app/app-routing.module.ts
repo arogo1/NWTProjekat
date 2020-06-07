@@ -9,6 +9,7 @@ import { from } from 'rxjs';
 import { AuthGuard } from './auth/auth.guard';
 import { StartQuizComponent } from './start-quiz/start-quiz.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'result', component: ResultComponent },
   {path:'',redirectTo:'/login',pathMatch:'full'},
   { path: 'start-quiz', component: StartQuizComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'admin', component: AdminComponent }
 ];
 
 @NgModule({

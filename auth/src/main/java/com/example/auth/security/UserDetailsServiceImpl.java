@@ -42,9 +42,9 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 	    
 		System.out.println("q3456789");
 		//List<ApplUser> users = restTemplate.getForObject("http://user-microservice/users", List.class);
-		ApplUser user1 = restTemplate.getForObject("http://user-microservice/user/2", ApplUser.class);
+		//ApplUser user1 = restTemplate.getForObject("http://user-microservice/user/2", ApplUser.class);
 		//for(ApplUser test: users) System.out.println(test);
-		System.out.println(user1);
+		//System.out.println(user1);
 		System.out.println("q3456789");
 		
 		

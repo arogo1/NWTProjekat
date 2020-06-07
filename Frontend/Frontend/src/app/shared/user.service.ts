@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import {  Response } from "@angular/http";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../Models/user.model';
+import { ApplUser } from '../Models/user.model';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -15,12 +15,15 @@ export class UserService {
     this.usersUrl = 'http://localhost:8080/user';
    }
 
-  public registerUser(user : User){
-    const body: User = {
-      UserName: user.UserName,
-      Password: user.Password
+  public registerUser(user : ApplUser){
+    const body: ApplUser = {
+      username: user.username,
+      password: user.password,
+      role: user.role,
+      loged: user.loged,
+      userId: 1
     }
-    return this.http.post<User>(this.usersUrl,user);
+    return this.http.post<ApplUser>(this.usersUrl,user);
   }
 
   userAuthentication() {

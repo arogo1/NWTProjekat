@@ -1,0 +1,13 @@
+
+<app-header></app-header>
+<form class="border border-dark rounded" style="margin: 1% auto; width: 40%;">
+    <div *ngFor="let x of users">
+      <div class="form-row" style="margin: 1%;">
+        <label style="margin-top: 1.2%;">Username:</label>
+        <input type="text" class="form-control-plaintext" readonly style="width: 20%; margin-left: 5%;" value="{{x.username}}">
+        <label style="margin-top: 1.2%;">Role:</label>
+        <input type="text" class="form-control-plaintext" readonly style="width: 20%; margin-left: 5%;" value="{{x.role}}">
+        <button class="btn btn-primary" [routerLink]="['/home-component']" style="margin-left: 1%;">Delete user</button>
+      </div>
+    </div>
+  </form>

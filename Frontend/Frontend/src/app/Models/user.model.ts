@@ -1,4 +1,8 @@
-export class User {
-    UserName: string;
-    Password: string;
+export class ApplUser {
+    userId: number;
+    username: string;
+    password: string;
+    role: string;
+    loged: boolean;
 }
+

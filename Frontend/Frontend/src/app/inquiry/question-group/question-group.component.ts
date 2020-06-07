@@ -29,6 +29,6 @@ export class QuestionGroupComponent implements OnInit {
   }
 
   fetchChild(data){
-    this.questionGroup.questions = data;
+    this.questionGroup.questions[0] = data;
   }
 }

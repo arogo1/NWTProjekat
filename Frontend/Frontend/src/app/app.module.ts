@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './shared/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
     QuestionComponent,
     ResultComponent,
     StartQuizComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent
   ],
    imports: [
     BrowserModule,

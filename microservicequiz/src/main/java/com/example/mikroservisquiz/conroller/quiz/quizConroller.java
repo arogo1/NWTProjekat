@@ -8,7 +8,7 @@ import com.example.mikroservisquiz.conroller.quiz.exception.quizNotFoundExceptio
 import com.example.mikroservisquiz.models.Quiz;
 import com.example.mikroservisquiz.servisi.quizService;
 
-import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+//import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -84,7 +84,7 @@ public class quizConroller{
         Quiz quiz = service.getById(id);
 
         if(quiz == null){
-            throw new InternalException("There is NO user with id: " + id + " in database.");
+            throw new postException("There is NO user with id: " + id + " in database.");
         }
 
         restTemplate.getForObject("http://inquiry-service//deleteInquiryAndQuiz/" + id.toString(), void.class);

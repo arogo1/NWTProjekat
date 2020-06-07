@@ -30,6 +30,6 @@ export class QuestionComponent implements OnInit {
     this.answers[1].answer = this.odgovor2.nativeElement.value;
     this.answers[2].answer = this.odgovor3.nativeElement.value;
     this.answers[3].answer = this.odgovor4.nativeElement.value;
-    this.childComponent.emit(this.answers);
+    //this.childComponent.emit(this.answers);
   }
 }

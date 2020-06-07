@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 //import com.example.microserviceuser.configuration.Producer;
-/*import com.example.microserviceuser.configuration.Producer;*/
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.springframework.amqp.core.AmqpTemplate;
