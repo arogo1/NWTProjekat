@@ -1,0 +1,4 @@
+FROM openjdk:13-alpine
+ADD target/docker-quiz.jar docker-quiz.jar
+EXPOSE 8800
+ENTRYPOINT [ "java", "-jar", "docker-quiz.jar" ]

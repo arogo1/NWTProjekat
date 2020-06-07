@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 //import com.example.microserviceuser.configuration.Producer;
-import com.example.microserviceuser.configuration.Producer;
+/*import com.example.microserviceuser.configuration.Producer;*/
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -38,8 +38,8 @@ public class UserController {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@Autowired
-	private Producer producer;
+	/*@Autowired
+	private Producer producer;*/
 
 	@GetMapping("/users")
 	public List<ApplUser>getUsers() {
@@ -86,7 +86,7 @@ public class UserController {
 			throw new InternalException("There is NO user with id: " + id + " in database.");
 		}
 
-		producer.send(id);//ovdje bi trebalo da se inquiry postavi na nula
+		//producer.send(id);//ovdje bi trebalo da se inquiry postavi na nula
 		restTemplate.getForObject("http://inquiry-service//deleteAllUserInquiry/" + id.toString(), void.class);
 
     }

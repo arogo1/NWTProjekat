@@ -88,6 +88,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>docker-zuul</finalName>
 	</build>
 
 </project>

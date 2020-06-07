@@ -195,5 +195,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>docker-quiz</finalName>
 	</build>
 </project>

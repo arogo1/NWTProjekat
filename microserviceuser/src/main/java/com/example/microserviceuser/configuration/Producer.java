@@ -1,4 +1,4 @@
-package com.example.microserviceuser.configuration;
+/*package com.example.microserviceuser.configuration;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,3 +20,4 @@ public class Producer {
 
     }
 }
+*/

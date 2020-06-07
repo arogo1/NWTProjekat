@@ -1,0 +1,4 @@
+FROM openjdk:13-alpine
+ADD target/docker-user.jar docker-user.jar
+EXPOSE 8083
+ENTRYPOINT [ "java", "-jar", "docker-user.jar" ]
